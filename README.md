@@ -14,16 +14,15 @@ A homepage, coleção, produto, pesquisa e estado vazio do carrinho são servido
 
 ## Tema Shopify
 
-O tema instalável é gerado por `python3 scripts/package-theme.py` em `dist/sophie-barlee-shopify-theme.zip`. No Shopify Admin, abre **Loja online → Temas → Adicionar tema → Carregar ficheiro zip** e instala-o como tema não publicado. Depois, escolhe menus e coleções reais no editor, seleciona/carrega as imagens de campanha nas secções, configura páginas de guia de tamanhos e políticas e testa o carrinho antes de publicar.
+O tema instalável é gerado por `python3 scripts/package-theme.py` em `dist/sophie-barlee-shopify-theme.zip`. No Shopify Admin, abre **Loja online → Temas → Adicionar tema → Carregar ficheiro zip** e instala-o como tema não publicado. Depois, escolhe menus e coleções reais no editor, configura páginas de guia de tamanhos e políticas e testa o carrinho antes de publicar.
 
-As imagens editoriais geradas são mostradas na pré-visualização, mas não estão embutidas no ZIP do tema: o armazenamento gerido do Preview não fornece um ficheiro local nem uma operação de escrita de media na loja. As secções Shopify incluem seletores de imagem para receber os assets no editor.
+O ZIP atualizado inclui cinco imagens editoriais geradas como fallback — hero desktop/mobile, dois banners e campanha panorâmica — e mantém os seletores de imagem editáveis. São imagens de campanha, não fotografias nem prova de artigos disponíveis. Inclui os locales `pt-PT.json` e `en.default.json`; a folha de estilos usa o filtro nativo Shopify `stylesheet_tag`.
 
 A integração disponível nesta sessão não expõe escrita/instalação de temas. Por isso, o ZIP não foi carregado para a loja nem publicado; o tema ativo e os dados comerciais não foram alterados.
 
 ## Estado observado
 
 A conta Shopify Sophie Barlee estava autorizada. Não existem produtos ativos e a única coleção devolvida pela Storefront API foi “Home page”, vazia. Não foram criados produtos, preços, stocks, coleções, menus, políticas, contactos, reviews nem descontos.
-
 
 ## Tipografia
 

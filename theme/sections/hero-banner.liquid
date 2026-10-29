@@ -7,7 +7,12 @@
       {% if mobile_image != blank %}<source media="(max-width: 700px)" srcset="{{ mobile_image | image_url: width: 1000 }}">{% endif %}
       <img class="hero-image" src="{{ hero_image | image_url: width: 2400 }}" srcset="{{ hero_image | image_url: width: 900 }} 900w, {{ hero_image | image_url: width: 1200 }} 1200w, {{ hero_image | image_url: width: 1800 }} 1800w, {{ hero_image | image_url: width: 2400 }} 2400w" sizes="100vw" width="{{ hero_image.width }}" height="{{ hero_image.height }}" alt="{{ hero_alt | escape }}" fetchpriority="high">
     </picture>
-  {% else %}<div class="hero-placeholder" aria-hidden="true"></div>{% endif %}
+  {% else %}
+    <picture class="hero-media">
+      <source media="(max-width: 700px)" srcset="{{ 'sophie-hero-mobile.webp' | asset_url }}">
+      <img class="hero-image" src="{{ 'sophie-hero-desktop.webp' | asset_url }}" alt="{{ hero_alt | escape }}" fetchpriority="high">
+    </picture>
+  {% endif %}
   <div class="hero-shade"></div>
   <div class="hero-copy">
     {% if section.settings.eyebrow != blank %}<p class="eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif %}

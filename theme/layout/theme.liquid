@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ request.locale.iso_code }}">
+<html lang="pt-PT">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -21,7 +21,7 @@
       <meta property="og:image" content="{{ social_image | image_url: width: 1200 | prepend: 'https:' }}">
       <meta name="twitter:image" content="{{ social_image | image_url: width: 1200 | prepend: 'https:' }}">
     {% endif %}
-    <link rel="stylesheet" href="{{ 'sophie.css' | asset_url }}">
+    {{ 'sophie.css' | asset_url | stylesheet_tag }}
     {{ content_for_header }}
   </head>
   <body class="template-{{ request.page_type | handle }}">

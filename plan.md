@@ -48,18 +48,18 @@ O anexo disponível contém o briefing textual, mas não a imagem de referência
 
 ## Estrutura de ficheiros
 
-- `theme/`: tema Shopify Liquid OS 2.0 — layouts, templates JSON, secções, snippets, assets CSS/JS, configuração e localization.
+- `theme/`: tema Shopify Liquid OS 2.0 — layouts, templates JSON, secções, snippets, CSS/JS, cinco assets editoriais de fallback, configuração e locales `pt-PT`/`en.default`.
 - `server.mjs`, `public/` e `package.json`: pré-visualização independente server-rendered servida pelo projecto Webdev, incluindo rotas reais de produto/coleção/pesquisa/carrinho vazio; não substitui a renderização real Shopify.
 - `docs/homepage-map.md`, `docs/homepage-map.mmd` e `docs/homepage-map.png`: mapa da arquitectura pedida em texto, fonte renderizável e diagrama PNG.
 - `scripts/package-theme.py`: validação estrutural e criação do ZIP do tema.
-- `README.md`: passos de instalação como tema de rascunho, seleção de menu/coleções, adição das imagens e validações antes de publicação.
+- `README.md`: passos de instalação como tema de rascunho, seleção de menu/coleções, substituição opcional das imagens editoriais e validações antes de publicação.
 - `TODO.md`: critérios originais agrupados por resultados independentes, com estado sustentado por evidência.
 
 ## Dados, dependências e riscos
 
 - Fonte dos artigos, preços, variantes, imagens de produto, disponibilidade e coleções: catálogo Shopify da loja autorizada.
 - Coleções temáticas sugeridas são merchandising, não entidades a criar automaticamente.
-- As imagens editoriais geradas são campanha/mood imagery; não são representações nem prova de produtos disponíveis.
+- As cinco imagens editoriais geradas são campanha/mood imagery e vêm no ZIP como fallback; não são representações nem prova de produtos disponíveis. As secções permitem substituir as imagens no editor.
 - O tema nativo poderá ser instalado/visualizado pelo utilizador no Shopify, mas não será enviado para a conta nem publicado nesta fase, pois a integração disponível não expõe uma operação autorizada para escrever/ativar temas.
 - A loja fica pré-lançamento. O proprietário deve validar catálogo, fornecedor, fotografias, composição, tamanhos, margem, envios, devoluções, direitos, privacidade e requisitos fiscais/legais antes de colocar artigos à venda.
 

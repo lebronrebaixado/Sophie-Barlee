@@ -9,7 +9,7 @@ THEME = ROOT / 'theme'
 OUT = ROOT / 'dist' / 'sophie-barlee-shopify-theme.zip'
 REQUIRED = [
     'layout/theme.liquid', 'config/settings_schema.json', 'config/settings_data.json',
-    'locales/pt-PT.json', 'sections/header-group.json', 'sections/footer-group.json',
+    'locales/pt-PT.json', 'locales/en.default.json', 'sections/header-group.json', 'sections/footer-group.json',
     'templates/index.json', 'templates/product.json', 'templates/collection.json',
     'templates/search.json', 'templates/cart.json', 'templates/page.json', 'templates/404.json',
 ]
@@ -39,7 +39,6 @@ for group in (THEME / 'sections').glob('*-group.json'):
         if section_type and section_type not in section_files:
             raise SystemExit(f'{group.name} refers to missing section {section_type}.liquid')
 
-locale = json.loads((THEME / 'locales/pt-PT.json').read_text(encoding='utf-8'))
 def flatten_keys(data, prefix=''):
     keys = set()
     for key, value in data.items():
@@ -49,7 +48,11 @@ def flatten_keys(data, prefix=''):
         else:
             keys.add(full)
     return keys
-locale_keys = flatten_keys(locale)
+locale_files = {
+    'pt-PT': THEME / 'locales/pt-PT.json',
+    'en.default': THEME / 'locales/en.default.json',
+}
+locale_keys = {name: flatten_keys(json.loads(path.read_text(encoding='utf-8'))) for name, path in locale_files.items()}
 open_to_close = {'if': 'endif', 'unless': 'endunless', 'for': 'endfor', 'case': 'endcase', 'capture': 'endcapture', 'form': 'endform', 'paginate': 'endpaginate', 'schema': 'endschema', 'comment': 'endcomment'}
 closing_to_open = {closing: opening for opening, closing in open_to_close.items()}
 liquid_files = list(THEME.rglob('*.liquid'))
@@ -87,8 +90,9 @@ for path in liquid_files:
         if not (THEME / 'assets' / asset).is_file():
             raise SystemExit(f'{relative} references missing asset {asset}')
     for key in re.findall(r"['\"]([\w.-]+(?:\.[\w.-]+)+)['\"]\s*\|\s*t\b", text):
-        if key not in locale_keys:
-            raise SystemExit(f'{relative} refers to missing pt-PT translation key {key}')
+        missing_locales = [name for name, keys in locale_keys.items() if key not in keys]
+        if missing_locales:
+            raise SystemExit(f'{relative} refers to missing translation key {key} in: {", ".join(missing_locales)}')
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
 with zipfile.ZipFile(OUT, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=8) as archive:
