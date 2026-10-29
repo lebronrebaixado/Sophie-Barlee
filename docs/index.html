@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#f7f4ee">
+    <meta name="description" content="Pré-visualização visual da homepage Sophie Barlee. Esta página não aceita compras nem subscrições.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+    <title>Sophie Barlee — Pré-visualização</title>
+    <link rel="preload" href="./preview-assets/CormorantGaramond-Latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./preview-assets/Montserrat-Latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="./preview-assets/sophie.css">
+    <link rel="stylesheet" href="./preview-assets/preview.css">
+    <script src="./preview-assets/sophie.js" defer></script>
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main">Saltar para o conteúdo</a>
+    <div class="preview-banner" id="preview-notice" role="note">
+      <strong>Pré-visualização pública</strong>
+      <span>Esta página é apenas visual: não aceita compras, subscrições ou dados pessoais.</span>
+    </div>
+    <div class="announcement">Descobre a nova coleção Sophie Barlee.</div>
+
+    <header class="site-header">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-menu-toggle>
+        <span class="sr-only">Abrir menu</span>
+        <span class="menu-lines" aria-hidden="true"><i></i><i></i></span>
+      </button>
+      <a class="wordmark" href="#top" aria-label="Sophie Barlee, início da pré-visualização">
+        <span class="wordmark-mark" aria-hidden="true">S</span>
+        <span>SOPHIE BARLEE</span>
+      </a>
+      <nav id="primary-navigation" class="primary-navigation" aria-label="Navegação principal" data-primary-navigation>
+        <a href="#arrivals">Coleções</a>
+      </nav>
+      <div class="header-actions" aria-label="Funções de compra desativadas nesta pré-visualização">
+        <span class="header-link preview-disabled" aria-disabled="true" title="Pesquisa indisponível nesta pré-visualização">Pesquisar</span>
+        <span class="header-link preview-disabled" aria-disabled="true" title="Carrinho indisponível nesta pré-visualização">Sacola <span class="cart-count">0</span></span>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <picture>
+          <source media="(max-width: 700px)" srcset="./preview-assets/image-2.webp">
+          <img class="hero-image" src="./preview-assets/image-1.webp" alt="Campanha editorial Sophie Barlee num interior urbano de tons quentes" fetchpriority="high">
+        </picture>
+        <div class="hero-shade"></div>
+        <div class="hero-copy">
+          <p class="eyebrow">SOPHIE BARLEE · NOVA ESTAÇÃO</p>
+          <h1 id="hero-title">Descobre o teu<br>próximo look.</h1>
+          <p>Peças que acompanham o teu estilo, do quotidiano às ocasiões especiais.</p>
+          <a class="button button-light" href="#arrivals" aria-describedby="preview-notice">Explorar a coleção <span aria-hidden="true">↗</span></a>
+        </div>
+        <span class="hero-caption">O teu estilo. A tua assinatura.</span>
+      </section>
+
+      <section class="editorial section" aria-label="Linhas editoriais">
+        <a class="editorial-panel" href="#arrivals" aria-describedby="preview-notice">
+          <img src="./preview-assets/image-3.webp" alt="Retrato editorial de moda feminina em tons de marfim e areia" loading="lazy">
+          <span class="editorial-overlay">
+            <span class="eyebrow">Para todos os dias</span>
+            <strong>Everyday Elegance</strong>
+            <span>Peças versáteis para elevar os teus looks diários.</span>
+            <span class="text-link">Descobrir a coleção <span aria-hidden="true">↗</span></span>
+          </span>
+        </a>
+        <a class="editorial-panel" href="#arrivals" aria-describedby="preview-notice">
+          <img src="./preview-assets/image-4.webp" alt="Retrato editorial com acessórios discretos" loading="lazy">
+          <span class="editorial-overlay">
+            <span class="eyebrow">O detalhe final</span>
+            <strong>The Accessories Edit</strong>
+            <span>Os detalhes que dão personalidade a cada coordenado.</span>
+            <span class="text-link">Explorar acessórios <span aria-hidden="true">↗</span></span>
+          </span>
+        </a>
+      </section>
+
+      <section class="campaign" aria-labelledby="campaign-title">
+        <img class="campaign-image" src="./preview-assets/image-5.webp" alt="Campanha editorial com três mulheres em looks contemporâneos" loading="lazy">
+        <div class="campaign-shade"></div>
+        <div class="campaign-copy">
+          <p class="eyebrow">UMA EXPRESSÃO PESSOAL</p>
+          <h2 id="campaign-title">THE SOPHIE EDIT</h2>
+          <p>Uma seleção de peças para expressares o teu estilo.</p>
+          <a class="button button-light" href="#arrivals" aria-describedby="preview-notice">Descobrir a seleção <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+
+      <section class="section arrivals" id="arrivals" aria-labelledby="arrivals-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Descobre primeiro</p>
+            <h2 id="arrivals-title">Novas chegadas</h2>
+          </div>
+        </div>
+        <div class="catalog-empty">
+          <p class="eyebrow">A seleção Sophie Barlee</p>
+          <h3>Ainda não há artigos disponíveis.</h3>
+          <p>Este preview apresenta apenas artigos reais do catálogo; não existem artigos para mostrar nesta versão.</p>
+        </div>
+      </section>
+
+      <section class="newsletter" aria-labelledby="newsletter-title">
+        <div class="newsletter-copy">
+          <p class="eyebrow">Recebe novidades</p>
+          <h2 id="newsletter-title">Entra no universo<br>Sophie Barlee.</h2>
+          <p>Recebe novidades, inspirações de estilo e informações sobre novas coleções.</p>
+        </div>
+        <div class="newsletter-preview-note" role="note">
+          <strong>Newsletter desativada nesta pré-visualização.</strong>
+          <span>Não recolhemos endereços de email nesta página.</span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a class="footer-wordmark" href="#top">SOPHIE BARLEE</a>
+          <p>Define o teu estilo. Escreve as tuas regras.</p>
+        </div>
+        <nav class="footer-policies" aria-label="Informação da pré-visualização">
+          <span>Sem compras, subscrições ou políticas comerciais nesta página.</span>
+          <a href="./preview-assets/OFL-Cormorant-Garamond.txt">Licença da Cormorant Garamond</a>
+          <a href="./preview-assets/OFL-Montserrat.txt">Licença da Montserrat</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Sophie Barlee</span>
+        <span>O teu estilo. A tua assinatura.</span>
+      </div>
+    </footer>
+  </body>
+</html>

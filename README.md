@@ -2,6 +2,10 @@
 
 A entrega contém um tema **Shopify Online Store 2.0** editável no editor de temas e uma pré-visualização server-rendered deste desenho. O tema é a implementação de comércio; a pré-visualização serve para rever a hierarquia visual e não recebe encomendas.
 
+## Preview público
+
+[Abrir o preview público no GitHub Pages](https://lebronrebaixado.github.io/Sophie-Barlee/). É uma página estática, marcada para não ser indexada, que serve apenas para rever o desenho. Não permite compras, pesquisa de catálogo nem subscrições; não recolhe dados pessoais.
+
 ## Pré-visualização
 
 O servidor lê apenas dados públicos do catálogo através da Storefront API configurada no projeto. Não grava dados nem expõe o token no HTML. Para correr localmente em Node 22+, usa `pnpm start` (porta 3000); `pnpm check` verifica a sintaxe JavaScript e Python. A rota `/manus-routes.json` declara as páginas do Preview.
