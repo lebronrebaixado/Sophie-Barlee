@@ -1,8 +1,18 @@
 {% assign has_collections = false %}
 {% for block in section.blocks %}{% if block.settings.collection != blank and block.settings.collection.products_count > 0 %}{% assign has_collections = true %}{% endif %}{% endfor %}
+{% assign eyebrow_key = 'home.collections.eyebrow' %}
+{% assign title_key = 'home.collections.title' %}
+{% case section.settings.heading_variant %}
+  {% when 'featured' %}
+    {% assign eyebrow_key = 'home.featured_collections.eyebrow' %}
+    {% assign title_key = 'home.featured_collections.title' %}
+  {% when 'trending' %}
+    {% assign eyebrow_key = 'home.trending.eyebrow' %}
+    {% assign title_key = 'home.trending.title' %}
+{% endcase %}
 {% if has_collections %}
   <section class="section collection-section" aria-labelledby="CollectionCardsTitle-{{ section.id }}">
-    <div class="section-heading"><p class="eyebrow">{{ section.settings.eyebrow | escape }}</p><h2 id="CollectionCardsTitle-{{ section.id }}">{{ section.settings.title | escape }}</h2></div>
+    <div class="section-heading"><p class="eyebrow">{% render 'localized-copy', value: section.settings.eyebrow, translation_key: eyebrow_key %}</p><h2 id="CollectionCardsTitle-{{ section.id }}">{% render 'localized-copy', value: section.settings.title, translation_key: title_key %}</h2></div>
     <div class="collection-grid">
       {% for block in section.blocks %}
         {% assign collection = block.settings.collection %}
@@ -15,7 +25,7 @@
             </div>
             <h3>{{ block.settings.title | default: collection.title | escape }}</h3>
             {% if block.settings.description != blank %}<p>{{ block.settings.description | escape }}</p>{% endif %}
-            <span class="text-link">{{ section.settings.link_label | escape }} <span aria-hidden="true">↗</span></span>
+            <span class="text-link">{% render 'localized-copy', value: section.settings.link_label, translation_key: 'home.collections.link' %} <span aria-hidden="true">↗</span></span>
           </a>
         {% endif %}
       {% endfor %}
@@ -25,22 +35,27 @@
 
 {% schema %}
 {
-  "name": "Coleções editoriais",
+  "name": "Editorial collections",
   "max_blocks": 5,
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Linha editorial", "default": "Escolhe o teu próximo capítulo" },
-    { "type": "text", "id": "title", "label": "Título", "default": "Descobre as coleções" },
-    { "type": "text", "id": "link_label", "label": "Texto da ligação", "default": "Descobrir" }
+    { "type": "select", "id": "heading_variant", "label": "Heading style", "options": [
+      { "value": "collections", "label": "Discover collections" },
+      { "value": "featured", "label": "Featured collections" },
+      { "value": "trending", "label": "In focus" }
+    ], "default": "collections" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow override (optional)", "default": "" },
+    { "type": "text", "id": "title", "label": "Title override (optional)", "default": "" },
+    { "type": "text", "id": "link_label", "label": "Link label override (optional)", "default": "" }
   ],
   "blocks": [
-    { "type": "collection", "name": "Coleção Shopify", "settings": [
-      { "type": "collection", "id": "collection", "label": "Coleção real" },
-      { "type": "image_picker", "id": "image", "label": "Imagem editorial opcional" },
-      { "type": "text", "id": "image_alt", "label": "Texto alternativo" },
-      { "type": "text", "id": "title", "label": "Título opcional" },
-      { "type": "textarea", "id": "description", "label": "Descrição opcional" }
+    { "type": "collection", "name": "Shopify collection", "settings": [
+      { "type": "collection", "id": "collection", "label": "Collection" },
+      { "type": "image_picker", "id": "image", "label": "Optional editorial image" },
+      { "type": "text", "id": "image_alt", "label": "Image alt text" },
+      { "type": "text", "id": "title", "label": "Optional title" },
+      { "type": "textarea", "id": "description", "label": "Optional description" }
     ] }
   ],
-  "presets": [{ "name": "Coleções editoriais", "blocks": [] }]
+  "presets": [{ "name": "Editorial collections", "blocks": [] }]
 }
 {% endschema %}

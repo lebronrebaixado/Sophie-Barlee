@@ -1,5 +1,5 @@
 <section class="product-main section" data-product-section>
-  <div class="product-gallery" aria-label="Fotografias de {{ product.title | escape }}">
+  <div class="product-gallery" aria-label="{{ 'products.gallery' | t: product_title: product.title | escape }}">
     {% for media in product.media %}
       {% if media.media_type == 'image' %}<figure class="product-gallery-item">{{ media.preview_image | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '480, 720, 1000, 1300, 1600', sizes: '(min-width: 900px) 55vw, 100vw', alt: media.alt | default: product.title }}</figure>{% endif %}
     {% endfor %}
@@ -10,9 +10,9 @@
     <p class="product-detail-price" data-product-price>{{ product.selected_or_first_available_variant.price | money }}</p>
     {% if product.description != blank %}<div class="product-description rte">{{ product.description }}</div>{% endif %}
     {% assign composition = product.metafields.custom.composition.value %}
-    {% if composition != blank %}<p class="product-fact"><strong>Composição</strong><span>{{ composition | escape }}</span></p>{% endif %}
+    {% if composition != blank %}<p class="product-fact"><strong>{{ 'products.composition' | t }}</strong><span>{{ composition | escape }}</span></p>{% endif %}
     {% assign fit = product.metafields.custom.fit.value %}
-    {% if fit != blank %}<p class="product-fact"><strong>Corte e ajuste</strong><span>{{ fit | escape }}</span></p>{% endif %}
+    {% if fit != blank %}<p class="product-fact"><strong>{{ 'products.fit' | t }}</strong><span>{{ fit | escape }}</span></p>{% endif %}
     {% assign product_form_id = 'ProductForm-' | append: section.id %}
     {% form 'product', product, id: product_form_id, class: 'product-form' %}
       {% unless product.has_only_default_variant %}
@@ -28,7 +28,7 @@
       {% assign variants_json = product.variants | json | replace: '</', '<\/' %}
       <script type="application/json" data-variants>{{ variants_json }}</script>
       {% if settings.size_guide_page != blank %}<a class="size-guide" href="{{ settings.size_guide_page.url }}">{{ 'products.size_guide' | t }} ↗</a>{% endif %}
-      <button class="button button-dark add-to-cart" type="submit" name="add" data-add-to-cart{% unless product.selected_or_first_available_variant.available %} disabled{% endunless %}>{% if product.selected_or_first_available_variant.available %}{{ 'products.add_to_cart' | t }}{% else %}{{ 'products.sold_out' | t }}{% endif %}</button>
+      <button class="button button-dark add-to-cart" type="submit" name="add" data-add-to-cart data-add-label="{{ 'products.add_to_cart' | t | escape }}" data-sold-out-label="{{ 'products.sold_out' | t | escape }}"{% unless product.selected_or_first_available_variant.available %} disabled{% endunless %}>{% if product.selected_or_first_available_variant.available %}{{ 'products.add_to_cart' | t }}{% else %}{{ 'products.sold_out' | t }}{% endif %}</button>
     {% endform %}
     <div class="product-policies">
       {% if shop.policies.shipping_policy != blank %}<p><a href="{{ shop.policies.shipping_policy.url }}">{{ shop.policies.shipping_policy.title | escape }}</a></p>{% endif %}
@@ -42,14 +42,14 @@
 
 {% schema %}
 {
-  "name": "Produto principal",
+  "name": "Main product",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Linha editorial", "default": "Sophie Barlee" }
+    { "type": "text", "id": "eyebrow", "label": "Editorial line", "default": "Sophie Barlee" }
   ],
   "blocks": [
-    { "type": "faq", "name": "Pergunta frequente", "settings": [
-      { "type": "text", "id": "question", "label": "Pergunta" },
-      { "type": "richtext", "id": "answer", "label": "Resposta" }
+    { "type": "faq", "name": "Frequently asked question", "settings": [
+      { "type": "text", "id": "question", "label": "Question" },
+      { "type": "richtext", "id": "answer", "label": "Answer" }
     ] }
   ]
 }

@@ -1,29 +1,27 @@
 # Sophie-Barlee
 
-A entrega contém um tema **Shopify Online Store 2.0** editável no editor de temas e uma pré-visualização server-rendered deste desenho. O tema é a implementação de comércio; a pré-visualização serve para rever a hierarquia visual e não recebe encomendas.
+An editable Shopify Online Store 2.0 theme and server-rendered visual Preview. The Shopify theme is the commerce implementation; the Preview is for layout review only and does not accept orders.
 
-## Preview público
+## Public visual Preview
 
-[Abrir o preview público no GitHub Pages](https://lebronrebaixado.github.io/Sophie-Barlee/). É uma página estática, marcada para não ser indexada, que serve apenas para rever o desenho. Não permite compras, pesquisa de catálogo nem subscrições; não recolhe dados pessoais.
+[Open the GitHub Pages Preview](https://lebronrebaixado.github.io/Sophie-Barlee/). This static, `noindex` page does not support purchases, product search, newsletter sign-ups or personal-data collection.
 
-## Pré-visualização
+## Shopify theme
 
-O servidor lê apenas dados públicos do catálogo através da Storefront API configurada no projeto. Não grava dados nem expõe o token no HTML. Para correr localmente em Node 22+, usa `pnpm start` (porta 3000); `pnpm check` verifica a sintaxe JavaScript e Python. A rota `/manus-routes.json` declara as páginas do Preview.
+Build the installable archive with `python3 scripts/package-theme.py`; output: `dist/sophie-barlee-shopify-theme.zip`. In Shopify Admin, go to **Online Store → Themes → Add theme → Upload zip file** and add it as an unpublished theme. Choose real navigation menus and collections in the theme editor, review the campaign images and legal pages, and test the draft theme before any publication.
 
-A homepage, coleção, produto, pesquisa e estado vazio do carrinho são servidos como HTML inicial. O Preview está marcado `noindex` porque não é a loja publicada. O carrinho/checkout de compras real só funciona no tema Shopify instalado.
+The default theme copy is British English (`en.default.json`). The fixed theme UI is also translated into Belgian French (`fr-BE.json`) and Belgian Dutch (`nl-BE.json`). No Portuguese locale or fixed Portuguese theme copy is shipped. The native language selector displays only languages Shopify has enabled and published. To activate French and Dutch, add and publish each under **Settings → Languages**, assign them to the intended Markets and translate product/collection data, menus, pages, policies and blog content with Shopify Translate & Adapt. Blank optional theme-editor copy fields use locale-aware defaults; manually entered overrides need their own translations. Checkout and email notification settings are managed separately.
 
-## Tema Shopify
+Five generated editorial campaign images are included as fallback assets (desktop/mobile hero, two editorial panels and a panoramic banner). They are campaign imagery, not product photography or availability claims.
 
-O tema instalável é gerado por `python3 scripts/package-theme.py` em `dist/sophie-barlee-shopify-theme.zip`. No Shopify Admin, abre **Loja online → Temas → Adicionar tema → Carregar ficheiro zip** e instala-o como tema não publicado. Depois, escolhe menus e coleções reais no editor, configura páginas de guia de tamanhos e políticas e testa o carrinho antes de publicar.
+## Preview and data status
 
-O ZIP atualizado inclui cinco imagens editoriais geradas como fallback — hero desktop/mobile, dois banners e campanha panorâmica — e mantém os seletores de imagem editáveis. São imagens de campanha, não fotografias nem prova de artigos disponíveis. Inclui os locales `pt-PT.json` e `en.default.json`; a folha de estilos usa o filtro nativo Shopify `stylesheet_tag`.
+The server reads public product and collection data through the configured Storefront API and does not write store data or expose its token to the browser. Run with Node 22+ using `pnpm start` (port 3000); `pnpm check` checks JavaScript and Python syntax. The homepage, collection, product, search and empty-bag routes are server-rendered. The Preview is not the live Shopify theme and should remain `noindex`.
 
-A integração disponível nesta sessão não expõe escrita/instalação de temas. Por isso, o ZIP não foi carregado para a loja nem publicado; o tema ativo e os dados comerciais não foram alterados.
+The Shopify Storefront API was checked read-only on 29 October 2026 and returned active products plus the `ESSENTIALS`, `NEW IN` and `ACCESSORIES` collections; more products remain paginated. Some of the first 20 active product records contain Portuguese titles, types or descriptions. Theme locale files do not translate that merchant-authored content; use Shopify Translate & Adapt to translate product, collection, menu, page and policy content before claiming the entire storefront is Portuguese-free. No catalogue records were modified.
 
-## Estado observado
+This session has no authorised Shopify theme upload or activation operation. The theme ZIP is prepared, but no theme was uploaded, activated or published; the active theme and commercial settings were not changed.
 
-A conta Shopify Sophie Barlee estava autorizada. Não existem produtos ativos e a única coleção devolvida pela Storefront API foi “Home page”, vazia. Não foram criados produtos, preços, stocks, coleções, menus, políticas, contactos, reviews nem descontos.
+## Typography
 
-## Tipografia
-
-Cormorant Garamond e Montserrat são servidas a partir dos assets locais do tema para evitar pedidos do navegador a Google Fonts. Os avisos SIL Open Font License 1.1 acompanham os ficheiros em `theme/assets/` e no ZIP.
+Cormorant Garamond and Montserrat are bundled locally under SIL Open Font License 1.1. Font assets and their notices are included in the theme and the public Preview.

@@ -2,15 +2,15 @@
   <header class="section-heading"><p class="eyebrow">Sophie Barlee</p><h1>{{ 'search.title' | t }}</h1></header>
   <form action="{{ routes.search_url }}" method="get" role="search" class="search-form">
     <label for="SearchInput">{{ 'search.placeholder' | t }}</label>
-    <div class="newsletter-field"><input id="SearchInput" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'search.placeholder' | t }}"><input type="hidden" name="type" value="product"><button type="submit">{{ 'search.submit' | t }} <span aria-hidden="true">↗</span></button></div>
+    <div class="newsletter-field"><input id="SearchInput" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'search.placeholder' | t | escape }}"><input type="hidden" name="type" value="product"><button type="submit">{{ 'search.submit' | t }} <span aria-hidden="true">↗</span></button></div>
   </form>
   {% if search.performed %}
     {% assign product_results = search.results | where: 'object_type', 'product' %}
     {% if product_results.size > 0 %}<div class="product-grid">{% for product in product_results %}{% render 'product-card', product: product %}{% endfor %}</div>
-    {% else %}<div class="catalog-empty"><h2>{{ 'search.no_results' | t }}</h2><p>Experimenta outra palavra ou explora as coleções disponíveis.</p></div>{% endif %}
+    {% else %}<div class="catalog-empty"><h2>{{ 'search.no_results' | t }}</h2><p>{{ 'search.no_results_hint' | t }}</p></div>{% endif %}
   {% endif %}
 </section>
 
 {% schema %}
-{ "name": "Pesquisa principal", "settings": [] }
+{ "name": "Main search", "settings": [] }
 {% endschema %}

@@ -1,0 +1,27 @@
+{
+  "accessibility": { "skip_to_content": "Ga naar de inhoud", "open_menu": "Menu openen", "close_menu": "Menu sluiten", "search": "Zoeken", "cart": "Winkelmandje", "home_link": "Startpagina van {{ shop_name }}", "primary_navigation": "Hoofdnavigatie", "open_submenu": "Submenu {{ menu_item }} openen", "cart_count_one": "{{ count }} product in je winkelmandje", "cart_count_other": "{{ count }} producten in je winkelmandje" },
+  "account": { "label": "Account" },
+  "localization": { "language": "Taal", "apply": "Toepassen" },
+  "products": { "add_to_cart": "Toevoegen aan winkelmandje", "sold_out": "Uitverkocht", "choose_variant": "Kies een optie", "size_guide": "Maattabel", "empty_collection": "Er zijn momenteel geen producten in deze collectie.", "gallery": "Foto’s van {{ product_title }}", "composition": "Samenstelling", "fit": "Pasvorm en maat" },
+  "cart": { "title": "Je winkelmandje", "empty": "Je winkelmandje is leeg.", "continue_shopping": "Verder winkelen", "update": "Winkelmandje bijwerken", "checkout": "Doorgaan naar afrekenen", "remove": "Verwijderen", "quantity": "Aantal", "subtotal": "Subtotaal", "shipping_tax_note": "Informatie over verzending en belastingen wordt getoond voordat je je bestelling bevestigt." },
+  "search": { "title": "Zoeken", "placeholder": "Waar ben je naar op zoek?", "submit": "Zoeken", "no_results": "We vonden geen producten voor deze zoekopdracht.", "no_results_hint": "Probeer een andere zoekterm of ontdek de beschikbare collecties." },
+  "collections": { "eyebrow": "Sophie Barlee · Collecties", "product_count_one": "{{ count }} product", "product_count_other": "{{ count }} producten", "continue_exploring": "Verder ontdekken" },
+  "filters": { "price_min": "Vanaf", "price_max": "Tot", "clear": "{{ filter_label }} wissen", "apply": "Filters toepassen" },
+  "pagination": { "label": "Paginering", "previous": "Vorige", "next": "Volgende" },
+  "errors": { "404": { "eyebrow": "404 · Sophie Barlee", "title": "Deze pagina is niet beschikbaar.", "body": "Het adres is mogelijk gewijzigd of de pagina bestaat niet meer.", "home_link": "Terug naar de startpagina" } },
+  "newsletter": { "success": "Bedankt om je in te schrijven.", "error": "Je inschrijving kon niet worden verwerkt. Probeer het opnieuw.", "consent": "Ik ga ermee akkoord om updates via e-mail te ontvangen. Ik kan me op elk moment uitschrijven.", "email_placeholder": "naam@voorbeeld.be", "eyebrow": "Ontvang updates", "title": "Ontdek de wereld van Sophie Barlee.", "copy": "Ontvang nieuwtjes, stijlinspiratie en informatie over nieuwe collecties.", "email_label": "E-mailadres", "submit": "Inschrijven" },
+  "home": {
+    "announcement": "Ontdek de nieuwe Sophie Barlee-collectie.",
+    "hero": { "image_alt": "Sophie Barlee-campagne in een hedendaags interieur", "eyebrow": "SOPHIE BARLEE · HET NIEUWE SEIZOEN", "title": "Ontdek je volgende look.", "subtitle": "Mode voor elke dag en bijzondere gelegenheden.", "button": "Ontdek de collectie", "caption": "Jouw stijl. Jouw signatuur." },
+    "categories": { "eyebrow": "Vind jouw ritme", "title": "Shop per collectie" },
+    "collections": { "eyebrow": "Kies je volgende hoofdstuk", "title": "Ontdek de collecties", "link": "Ontdekken" },
+    "featured_collections": { "eyebrow": "De Sophie-selectie", "title": "Uitgelichte collecties" },
+    "trending": { "eyebrow": "Favorieten van dit moment", "title": "In de kijker" },
+    "editorial": { "region": "Redactionele collecties", "everyday_eyebrow": "Voor elke dag", "everyday_title": "Alledaagse elegantie", "everyday_copy": "Veelzijdige stukken die je dagelijkse looks naar een hoger niveau tillen.", "everyday_link": "Ontdek de collectie", "accessories_eyebrow": "De finishing touch", "accessories_title": "Accessoires", "accessories_copy": "Details die elke outfit karakter geven.", "accessories_link": "Ontdek accessoires" },
+    "campaign": { "image_alt": "Sophie Barlee-campagne met drie vrouwen in eigentijdse outfits", "eyebrow": "EEN PERSOONLIJKE EXPRESSIE", "title": "THE SOPHIE EDIT", "subtitle": "Een selectie die jouw stijl laat spreken.", "button": "Ontdek de selectie" },
+    "arrivals": { "eyebrow": "Net binnen", "title": "Nieuw binnen", "view_all": "Ontdek alle nieuwkomers", "empty_title": "Er zijn momenteel geen producten beschikbaar.", "empty_copy": "Nieuwe producten verschijnen hier zodra ze beschikbaar zijn." }
+  },
+  "footer": { "description": "Mode die bij elke kant van jou past.", "menu_heading": "Hulp en informatie", "support_navigation": "Hulp en informatie", "policies_navigation": "Winkelinformatie", "signature": "Bepaal je stijl. Schrijf je eigen regels." },
+  "recommendations": { "eyebrow": "Maak je look compleet", "title": "Misschien vind je dit ook leuk" },
+  "seo": { "default_description": "Eigentijdse damesmode en accessoires voor elke dag en bijzondere gelegenheden." }
+}

@@ -1,0 +1,5 @@
+{%- assign localized_copy = value -%}
+{%- if localized_copy == blank and translation_key != blank -%}
+  {%- assign localized_copy = translation_key | t -%}
+{%- endif -%}
+{{- localized_copy | escape -}}

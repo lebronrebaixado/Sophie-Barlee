@@ -1,8 +1,8 @@
 {
   "type": "footer",
-  "name": "Rodapé",
+  "name": "Footer",
   "sections": {
-    "footer": { "type": "footer", "settings": { "description": "Moda que acompanha a mulher nas diferentes versões de si própria.", "menu_heading": "Apoio e informação", "signature": "Define o teu estilo. Escreve as tuas regras." } }
+    "footer": { "type": "footer", "settings": { "description": "", "menu_heading": "", "signature": "" } }
   },
   "order": ["footer"]
 }

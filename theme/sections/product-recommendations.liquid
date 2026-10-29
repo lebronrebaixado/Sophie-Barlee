@@ -1,17 +1,17 @@
 <product-recommendations class="section product-recommendations" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.product_limit }}&intent=related" hidden>
   {% if recommendations.performed and recommendations.products_count > 0 %}
-    <div class="section-heading"><p class="eyebrow">{{ section.settings.eyebrow | escape }}</p><h2>{{ section.settings.title | escape }}</h2></div>
+    <div class="section-heading"><p class="eyebrow">{% render 'localized-copy', value: section.settings.eyebrow, translation_key: 'recommendations.eyebrow' %}</p><h2>{% render 'localized-copy', value: section.settings.title, translation_key: 'recommendations.title' %}</h2></div>
     <div class="product-grid">{% for recommendation in recommendations.products limit: section.settings.product_limit %}{% render 'product-card', product: recommendation %}{% endfor %}</div>
   {% endif %}
 </product-recommendations>
 
 {% schema %}
 {
-  "name": "Recomendações de produto",
+  "name": "Product recommendations",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Linha editorial", "default": "Completa o teu look" },
-    { "type": "text", "id": "title", "label": "Título", "default": "Podes gostar também" },
-    { "type": "range", "id": "product_limit", "label": "Número máximo de artigos", "min": 2, "max": 8, "step": 1, "default": 4 }
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow override (optional)", "default": "" },
+    { "type": "text", "id": "title", "label": "Title override (optional)", "default": "" },
+    { "type": "range", "id": "product_limit", "label": "Maximum products", "min": 2, "max": 8, "step": 1, "default": 4 }
   ]
 }
 {% endschema %}

@@ -4,7 +4,7 @@
 
 Construir um tema **Shopify Online Store 2.0 em Liquid**, com secções configuráveis no editor de temas. Esta escolha cumpre diretamente os requisitos de a homepage, banners, imagens, textos, ligações, coleções e navegação serem editáveis no Shopify. Não usar Hydrogen headless: embora a integração Storefront tenha sido ligada, um storefront Hydrogen não disponibiliza estas secções no editor nativo de temas.
 
-O acesso Shopify autorizado confirma que a loja existente «Sophie Barlee» não tem produtos ativos. A Storefront API mostra apenas a coleção automática «Home page», também vazia. Não semear artigos, variantes, preços, avaliações, stock, contactos, dados legais, menus ou condições comerciais. O tema será dinâmico e mostrará produtos/coleções apenas quando os dados reais e as ligações forem configurados.
+Uma consulta de leitura à Storefront API em 29 de outubro de 2026 devolveu produtos ativos e as coleções `ESSENTIALS`, `NEW IN` e `ACCESSORIES`, com mais produtos paginados. Alguns dos primeiros 20 registos têm títulos/tipos/descrições em português. O tema e a pré-visualização usam dados reais sem os modificar; as traduções de conteúdo comercial exigem Shopify Translate & Adapt e não são produzidas pelos ficheiros de locale do tema. Não semear produtos, variantes, preços, avaliações, stock, contactos, dados legais, menus ou condições comerciais.
 
 O anexo disponível contém o briefing textual, mas não a imagem de referência descrita. O mapa de homepage será derivado da arquitetura textual do briefing, sem afirmar uma análise visual da imagem em falta.
 
@@ -14,21 +14,22 @@ O anexo disponível contém o briefing textual, mas não a imagem de referência
 - Priorizar a homepage e a identidade visual; criar modelos de produto e coleção conectados aos objetos Shopify e ao inventário real.
 - Incluir navegação, pesquisa, links internos, formulários nativos de carrinho/newsletter e estados sem catálogo. Não simular checkout nem pagamento fora da Shopify.
 - Criar uma pré-visualização responsiva para revisão visual e um ZIP do tema com instruções de instalação. A pré-visualização não é a loja Shopify nem prova de publicação do tema.
+- Usar inglês britânico como texto predefinido da loja. Incluir locales completos `fr-BE` e `nl-BE`, um seletor nativo de idioma e nenhum locale português. Textos em produtos, coleções, menus, páginas e políticas geridos pelo comerciante exigem tradução própria no Shopify.
 - Não carregar produtos ou criar coleções por conta própria; não instalar apps, comprar serviços, alterar o tema atualmente ativo, publicar, ativar o checkout, ou preencher dados comerciais/legais sem autorização.
 
 ## Mapa da homepage
 
-1. Barra superior — copy editável “Descobre a nova coleção Sophie Barlee.”
-2. Cabeçalho — wordmark, menu Shopify configurável, pesquisa, conta quando disponível e carrinho; favoritos só se houver suporte real.
-3. Hero — imagem e copy editáveis: “Descobre o teu próximo look.”, “Peças que acompanham o teu estilo, do quotidiano às ocasiões especiais.”, CTA “Explorar a coleção”.
+1. Barra superior — copy editável, com predefinição en-GB “Discover the new Sophie Barlee collection.” e equivalentes nos locales publicados.
+2. Cabeçalho — wordmark, menu Shopify configurável, pesquisa, conta quando disponível, seletor só quando houver mais de um idioma publicado e carrinho; favoritos só se houver suporte real.
+3. Hero — imagem e copy editáveis, com predefinição en-GB “Discover your next look.”, “Styles to take you from everyday moments to special occasions.” e CTA “Explore the collection”; equivalentes em `fr-BE` e `nl-BE`.
 4. Categorias — faixa deslizável, alimentada por coleções reais e sem Últimas Oportunidades se não for aplicável.
-5. “Descobre as coleções” — blocos de coleções Shopify selecionáveis no editor; mostrar apenas blocos preenchidos e coleções reais.
+5. “Discover the collections” — blocos de coleções Shopify selecionáveis no editor; mostrar apenas blocos preenchidos e coleções reais.
 6. Coleções em destaque — até cinco cartões configuráveis, sem destinos fictícios.
 7. Banners editoriais — “Everyday Elegance” e “The Accessories Edit”, ambos editáveis.
 8. Campanha — banner panorâmico “THE SOPHIE EDIT”, com imagem, copy e ligação editáveis.
 9. “Em destaque” — seleções reais de coleções/produtos, opcionais.
-10. Novas chegadas — produtos reais Shopify, preço/variantes/stock conforme catálogo; estado vazio informativo quando não existirem produtos.
-11. Newsletter — inscrição voluntária, checkbox não pré-selecionado e copy de consentimento explícita.
+10. “New arrivals” — produtos reais Shopify, preço/variantes/stock conforme catálogo; estado vazio informativo quando não existirem produtos.
+11. Newsletter — inscrição voluntária, checkbox não pré-selecionado e copy localizada de consentimento explícita.
 12. Rodapé — páginas e políticas Shopify existentes, menu de apoio e contactos apenas quando fornecidos.
 
 ## Sistema visual
@@ -48,7 +49,7 @@ O anexo disponível contém o briefing textual, mas não a imagem de referência
 
 ## Estrutura de ficheiros
 
-- `theme/`: tema Shopify Liquid OS 2.0 — layouts, templates JSON, secções, snippets, CSS/JS responsivos com camadas de imagem isoladas, cinco assets editoriais de fallback, configuração e locales `pt-PT`/`en.default`.
+- `theme/`: tema Shopify Liquid OS 2.0 — layouts, templates JSON, secções, snippets, CSS/JS responsivos com camadas de imagem isoladas, cinco assets editoriais de fallback, configuração e locales `en.default` (copy en-GB), `fr-BE` e `nl-BE`.
 - `server.mjs`, `public/` e `package.json`: pré-visualização independente server-rendered servida pelo projecto Webdev, incluindo rotas reais de produto/coleção/pesquisa/carrinho vazio; não substitui a renderização real Shopify.
 - `docs/homepage-map.md`, `docs/homepage-map.mmd` e `docs/homepage-map.png`: mapa da arquitectura pedida em texto, fonte renderizável e diagrama PNG.
 - `scripts/package-theme.py`: validação estrutural e criação do ZIP do tema.

@@ -2,15 +2,15 @@
   {
     "name": "Sophie Barlee",
     "settings": [
-      { "type": "header", "content": "Identidade" },
-      { "type": "image_picker", "id": "logo", "label": "Logótipo" },
-      { "type": "image_picker", "id": "social_sharing_image", "label": "Imagem para partilha social" },
-      { "type": "text", "id": "announcement_text", "label": "Mensagem da barra superior", "default": "Descobre a nova coleção Sophie Barlee." },
-      { "type": "link_list", "id": "main_menu", "label": "Menu principal" },
-      { "type": "link_list", "id": "footer_menu", "label": "Menu do rodapé" },
-      { "type": "text", "id": "contact_email", "label": "Email de apoio ao cliente" },
-      { "type": "page", "id": "size_guide_page", "label": "Página do guia de tamanhos" },
-      { "type": "checkbox", "id": "show_customer_account", "label": "Mostrar ligação à conta de cliente", "default": true }
+      { "type": "header", "content": "Brand identity" },
+      { "type": "image_picker", "id": "logo", "label": "Logo" },
+      { "type": "image_picker", "id": "social_sharing_image", "label": "Social sharing image" },
+      { "type": "text", "id": "announcement_text", "label": "Announcement bar override (unused by default section)", "default": "" },
+      { "type": "link_list", "id": "main_menu", "label": "Main menu" },
+      { "type": "link_list", "id": "footer_menu", "label": "Footer menu" },
+      { "type": "text", "id": "contact_email", "label": "Customer support email" },
+      { "type": "page", "id": "size_guide_page", "label": "Size guide page" },
+      { "type": "checkbox", "id": "show_customer_account", "label": "Show customer account link", "default": true }
     ]
   }
 ]

@@ -1,9 +1,9 @@
 <section class="section collection-page">
   <header class="collection-heading">
     {% if collection.featured_image != blank %}{{ collection.featured_image | image_url: width: 2000 | image_tag: class: 'collection-hero-image', loading: 'eager', widths: '900, 1200, 1600, 2000', sizes: '100vw', alt: collection.title }}{% endif %}
-    <p class="eyebrow">Sophie Barlee · Coleções</p><h1>{{ collection.title | escape }}</h1>
+    <p class="eyebrow">{{ 'collections.eyebrow' | t }}</p><h1>{{ collection.title | escape }}</h1>
     {% if collection.description != blank %}<div class="collection-description rte">{{ collection.description }}</div>{% endif %}
-    <p class="collection-count">{{ collection.products_count }} artigos</p>
+    <p class="collection-count">{% if collection.products_count == 1 %}{{ 'collections.product_count_one' | t: count: collection.products_count }}{% else %}{{ 'collections.product_count_other' | t: count: collection.products_count }}{% endif %}</p>
   </header>
   {% paginate collection.products by section.settings.products_per_page %}
     {% if collection.filters != blank %}
@@ -11,29 +11,29 @@
         {% for filter in collection.filters %}
           <details class="filter-group"><summary>{{ filter.label | escape }}</summary><div class="filter-options">
             {% if filter.type == 'price_range' %}
-              <label>De <input name="{{ filter.min_value.param_name }}" type="number" min="0" value="{{ filter.min_value.value | default: '' }}" placeholder="0"></label>
-              <label>Até <input name="{{ filter.max_value.param_name }}" type="number" min="0" value="{{ filter.max_value.value | default: '' }}" placeholder="{{ filter.range_max | money_without_currency }}"></label>
+              <label>{{ 'filters.price_min' | t }} <input name="{{ filter.min_value.param_name }}" type="number" min="0" value="{{ filter.min_value.value | default: '' }}" placeholder="0"></label>
+              <label>{{ 'filters.price_max' | t }} <input name="{{ filter.max_value.param_name }}" type="number" min="0" value="{{ filter.max_value.value | default: '' }}" placeholder="{{ filter.range_max | money_without_currency }}"></label>
             {% else %}
               {% for value in filter.values %}<label class="filter-option"><input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}"{% if value.active %} checked{% endif %}{% if value.count == 0 and value.active == false %} disabled{% endif %}><span>{{ value.label | escape }} <small>({{ value.count }})</small></span></label>{% endfor %}
             {% endif %}
-            {% if filter.active_values.size > 0 %}<a href="{{ filter.url_to_remove }}">Limpar {{ filter.label | escape }}</a>{% endif %}
+            {% if filter.active_values.size > 0 %}<a href="{{ filter.url_to_remove }}">{{ 'filters.clear' | t: filter_label: filter.label | escape }}</a>{% endif %}
           </div></details>
         {% endfor %}
-        <button class="text-button" type="submit">Aplicar filtros</button>
+        <button class="text-button" type="submit">{{ 'filters.apply' | t }}</button>
       </form>
     {% endif %}
     {% if collection.products_count > 0 %}
       <div class="product-grid">{% for product in collection.products %}{% render 'product-card', product: product %}{% endfor %}</div>
-      {% if paginate.pages > 1 %}<nav class="pagination" aria-label="Paginação">{% if paginate.previous %}<a href="{{ paginate.previous.url }}">← Anterior</a>{% endif %}<span>{{ paginate.current_page }} / {{ paginate.pages }}</span>{% if paginate.next %}<a href="{{ paginate.next.url }}">Seguinte →</a>{% endif %}</nav>{% endif %}
-    {% else %}<div class="catalog-empty"><h2>{{ 'products.empty_collection' | t }}</h2><a class="text-link" href="{{ routes.all_products_collection_url }}">Continuar a explorar <span aria-hidden="true">↗</span></a></div>{% endif %}
+      {% if paginate.pages > 1 %}<nav class="pagination" aria-label="{{ 'pagination.label' | t | escape }}">{% if paginate.previous %}<a href="{{ paginate.previous.url }}">← {{ 'pagination.previous' | t }}</a>{% endif %}<span>{{ paginate.current_page }} / {{ paginate.pages }}</span>{% if paginate.next %}<a href="{{ paginate.next.url }}">{{ 'pagination.next' | t }} →</a>{% endif %}</nav>{% endif %}
+    {% else %}<div class="catalog-empty"><h2>{{ 'products.empty_collection' | t }}</h2><a class="text-link" href="{{ routes.all_products_collection_url }}">{{ 'collections.continue_exploring' | t }} <span aria-hidden="true">↗</span></a></div>{% endif %}
   {% endpaginate %}
 </section>
 
 {% schema %}
 {
-  "name": "Coleção principal",
+  "name": "Main collection",
   "settings": [
-    { "type": "range", "id": "products_per_page", "label": "Artigos por página", "min": 8, "max": 32, "step": 4, "default": 16 }
+    { "type": "range", "id": "products_per_page", "label": "Products per page", "min": 8, "max": 32, "step": 4, "default": 16 }
   ]
 }
 {% endschema %}

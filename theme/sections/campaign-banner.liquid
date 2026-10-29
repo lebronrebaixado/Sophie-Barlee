@@ -1,33 +1,35 @@
+{% assign campaign_alt = section.settings.image_alt %}
+{% if campaign_alt == blank %}{% assign campaign_alt = 'home.campaign.image_alt' | t %}{% endif %}
 <section class="campaign" aria-labelledby="CampaignTitle-{{ section.id }}">
   {% if section.settings.image != blank %}
-    {{ section.settings.image | image_url: width: 2400 | image_tag: class: 'campaign-image', loading: 'lazy', widths: '900, 1200, 1600, 2000, 2400', sizes: '100vw', alt: section.settings.image_alt | default: section.settings.title }}
+    {{ section.settings.image | image_url: width: 2400 | image_tag: class: 'campaign-image', loading: 'lazy', widths: '900, 1200, 1600, 2000, 2400', sizes: '100vw', alt: campaign_alt }}
   {% else %}
-    <img class="campaign-image" src="{{ 'sophie-campaign.webp' | asset_url }}" alt="{{ section.settings.image_alt | default: section.settings.title | escape }}" loading="lazy">
+    <img class="campaign-image" src="{{ 'sophie-campaign.webp' | asset_url }}" alt="{{ campaign_alt | escape }}" loading="lazy">
   {% endif %}
   <div class="campaign-shade"></div>
   <div class="campaign-copy">
-    <p class="eyebrow">{{ section.settings.eyebrow | escape }}</p>
-    <h2 id="CampaignTitle-{{ section.id }}">{{ section.settings.title | escape }}</h2>
-    <p>{{ section.settings.subtitle | escape }}</p>
+    <p class="eyebrow">{% render 'localized-copy', value: section.settings.eyebrow, translation_key: 'home.campaign.eyebrow' %}</p>
+    <h2 id="CampaignTitle-{{ section.id }}">{% render 'localized-copy', value: section.settings.title, translation_key: 'home.campaign.title' %}</h2>
+    <p>{% render 'localized-copy', value: section.settings.subtitle, translation_key: 'home.campaign.subtitle' %}</p>
     {% assign campaign_url = section.settings.link %}
     {% if section.settings.collection != blank %}{% assign campaign_url = section.settings.collection.url %}{% endif %}
-    {% if section.settings.button_label != blank %}<a class="button button-light" href="{{ campaign_url | default: routes.all_products_collection_url }}">{{ section.settings.button_label | escape }} <span aria-hidden="true">↗</span></a>{% endif %}
+    <a class="button button-light" href="{{ campaign_url | default: routes.all_products_collection_url }}">{% render 'localized-copy', value: section.settings.button_label, translation_key: 'home.campaign.button' %} <span aria-hidden="true">↗</span></a>
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Campanha panorâmica",
+  "name": "Panoramic campaign",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Imagem da campanha" },
-    { "type": "text", "id": "image_alt", "label": "Texto alternativo", "default": "Campanha editorial Sophie Barlee" },
-    { "type": "text", "id": "eyebrow", "label": "Linha editorial", "default": "Uma expressão pessoal" },
-    { "type": "text", "id": "title", "label": "Título", "default": "THE SOPHIE EDIT" },
-    { "type": "textarea", "id": "subtitle", "label": "Subtítulo", "default": "Uma seleção de peças para expressares o teu estilo." },
-    { "type": "text", "id": "button_label", "label": "Texto do botão", "default": "Descobrir a seleção" },
-    { "type": "collection", "id": "collection", "label": "Coleção de destino" },
-    { "type": "url", "id": "link", "label": "Ligação alternativa" }
+    { "type": "image_picker", "id": "image", "label": "Campaign image" },
+    { "type": "text", "id": "image_alt", "label": "Image alt text override (optional)", "default": "" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow override (optional)", "default": "" },
+    { "type": "text", "id": "title", "label": "Title override (optional)", "default": "" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle override (optional)", "default": "" },
+    { "type": "text", "id": "button_label", "label": "Button label override (optional)", "default": "" },
+    { "type": "collection", "id": "collection", "label": "Destination collection" },
+    { "type": "url", "id": "link", "label": "Alternative link" }
   ],
-  "presets": [{ "name": "Campanha panorâmica" }]
+  "presets": [{ "name": "Panoramic campaign" }]
 }
 {% endschema %}

@@ -1,11 +1,22 @@
 (() => {
+  document.documentElement.classList.add('js');
+
+  document.querySelectorAll('[name="language_code"]').forEach((select) => {
+    select.addEventListener('change', () => {
+      const form = select.form;
+      if (!form) return;
+      if (typeof form.requestSubmit === 'function') form.requestSubmit();
+      else form.submit();
+    });
+  });
+
   const menuButton = document.querySelector('[data-menu-toggle]');
   const navigation = document.querySelector('[data-primary-navigation]');
 
   if (menuButton && navigation) {
     const menuLabel = menuButton.querySelector('.sr-only');
-    const openLabel = menuButton.dataset.openLabel || menuLabel?.textContent || 'Abrir menu';
-    const closeLabel = menuButton.dataset.closeLabel || 'Fechar menu';
+    const openLabel = menuButton.dataset.openLabel || menuLabel?.textContent || 'Open menu';
+    const closeLabel = menuButton.dataset.closeLabel || 'Close menu';
     const closeMenu = () => {
       menuButton.setAttribute('aria-expanded', 'false');
       if (menuLabel) menuLabel.textContent = openLabel;
@@ -61,7 +72,7 @@
     try { variants = JSON.parse(variantScript.textContent); } catch { return; }
     const currency = window.Shopify?.currency?.active || 'EUR';
     const money = (minorUnits) => {
-      try { return new Intl.NumberFormat(document.documentElement.lang || 'pt-PT', { style: 'currency', currency }).format(Number(minorUnits) / 100); }
+      try { return new Intl.NumberFormat(document.documentElement.lang || 'en-GB', { style: 'currency', currency }).format(Number(minorUnits) / 100); }
       catch { return `${(Number(minorUnits) / 100).toFixed(2)} ${currency}`; }
     };
     const updateVariant = () => {
@@ -70,12 +81,12 @@
       if (!variant) {
         variantInput.value = '';
         button.disabled = true;
-        button.textContent = 'Indisponível';
+        button.textContent = button.dataset.soldOutLabel || 'Out of stock';
         return;
       }
       variantInput.value = variant.id;
       button.disabled = !variant.available;
-      button.textContent = variant.available ? 'Adicionar ao carrinho' : 'Indisponível';
+      button.textContent = variant.available ? (button.dataset.addLabel || 'Add to bag') : (button.dataset.soldOutLabel || 'Out of stock');
       if (price) price.textContent = money(variant.price);
       const next = new URL(window.location.href);
       next.searchParams.set('variant', variant.id);
@@ -107,7 +118,7 @@
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       const feedback = form.querySelector('.form-feedback');
-      if (feedback) feedback.textContent = 'Pré-visualização: a inscrição será processada pelo Shopify quando o tema for instalado.';
+      if (feedback) feedback.textContent = 'Preview only: newsletter sign-ups are processed by Shopify once the theme is installed.';
       form.reset();
     });
   });

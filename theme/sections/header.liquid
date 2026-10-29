@@ -3,20 +3,20 @@
     <span class="sr-only">{{ 'accessibility.open_menu' | t }}</span>
     <span class="menu-lines" aria-hidden="true"><i></i><i></i></span>
   </button>
-  <a class="wordmark" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }} — página inicial">
+  <a class="wordmark" href="{{ routes.root_url }}" aria-label="{{ 'accessibility.home_link' | t: shop_name: shop.name | escape }}">
     {% if settings.logo != blank %}
       {{ settings.logo | image_url: width: 520 | image_tag: class: 'wordmark-image', alt: shop.name, widths: '180, 260, 360, 520', loading: 'eager' }}
     {% else %}
       <span class="wordmark-mark" aria-hidden="true">S</span><span>{{ shop.name | escape }}</span>
     {% endif %}
   </a>
-  <nav id="PrimaryNavigation" class="primary-navigation" aria-label="Navegação principal" data-primary-navigation>
+  <nav id="PrimaryNavigation" class="primary-navigation" aria-label="{{ 'accessibility.primary_navigation' | t | escape }}" data-primary-navigation>
     {% if settings.main_menu != blank %}
       {% for link in settings.main_menu.links %}
         <div class="nav-item{% if link.links != blank %} has-submenu{% endif %}">
           <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title | escape }}</a>
           {% if link.links != blank %}
-            <button class="submenu-toggle" type="button" aria-expanded="false" aria-label="Abrir submenu {{ link.title | escape }}" data-submenu-toggle>+</button>
+            <button class="submenu-toggle" type="button" aria-expanded="false" aria-label="{{ 'accessibility.open_submenu' | t: menu_item: link.title | escape }}" data-submenu-toggle>+</button>
             <div class="submenu"><ul>{% for child in link.links %}<li><a href="{{ child.url }}">{{ child.title | escape }}</a></li>{% endfor %}</ul></div>
           {% endif %}
         </div>
@@ -27,7 +27,7 @@
     {% if section.settings.show_search %}
       <form class="header-search" action="{{ routes.search_url }}" method="get" role="search">
         <label class="sr-only" for="HeaderSearch">{{ 'accessibility.search' | t }}</label>
-        <input id="HeaderSearch" type="search" name="q" placeholder="{{ 'search.placeholder' | t }}" value="{{ search.terms | escape }}">
+        <input id="HeaderSearch" type="search" name="q" placeholder="{{ 'search.placeholder' | t | escape }}" value="{{ search.terms | escape }}">
         <input type="hidden" name="type" value="product">
         <button type="submit" class="text-button">{{ 'search.submit' | t }}</button>
       </form>
@@ -35,23 +35,34 @@
         <summary><span class="sr-only">{{ 'accessibility.search' | t }}</span><svg viewBox="0 0 24 24" width="20" height="20" focusable="false" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" fill="none" stroke="currentColor" stroke-width="1.5"></circle><path d="m16 16 4.4 4.4" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg></summary>
         <form class="mobile-search-panel" action="{{ routes.search_url }}" method="get" role="search">
           <label class="sr-only" for="MobileHeaderSearch">{{ 'accessibility.search' | t }}</label>
-          <input id="MobileHeaderSearch" type="search" name="q" placeholder="{{ 'search.placeholder' | t }}" value="{{ search.terms | escape }}">
+          <input id="MobileHeaderSearch" type="search" name="q" placeholder="{{ 'search.placeholder' | t | escape }}" value="{{ search.terms | escape }}">
           <input type="hidden" name="type" value="product">
           <button type="submit" class="button button-dark">{{ 'search.submit' | t }}</button>
         </form>
       </details>
     {% endif %}
-    {% if settings.show_customer_account and shop.customer_accounts_enabled %}<a class="header-link account-link" href="{{ routes.account_url }}">Conta</a>{% endif %}
-    <a class="header-link cart-link" href="{{ routes.cart_url }}" aria-label="{{ 'accessibility.cart' | t }}: {{ cart.item_count }} artigos">Sacola <span class="cart-count">{{ cart.item_count }}</span></a>
+    {% if localization.available_languages.size > 1 %}
+      <div class="language-picker">
+        {% form 'localization', id: 'HeaderLocalizationForm', class: 'language-form' %}
+          <label class="sr-only" for="HeaderLanguage">{{ 'localization.language' | t }}</label>
+          <select id="HeaderLanguage" name="language_code" data-language-select>
+            {% for language in localization.available_languages %}<option value="{{ language.iso_code }}"{% if language.iso_code == localization.language.iso_code %} selected{% endif %}>{{ language.endonym_name | escape }}</option>{% endfor %}
+          </select>
+          <button type="submit" class="language-submit">{{ 'localization.apply' | t }}</button>
+        {% endform %}
+      </div>
+    {% endif %}
+    {% if settings.show_customer_account and shop.customer_accounts_enabled %}<a class="header-link account-link" href="{{ routes.account_url }}">{{ 'account.label' | t }}</a>{% endif %}
+    <a class="header-link cart-link" href="{{ routes.cart_url }}"{% if cart.item_count == 1 %} aria-label="{{ 'accessibility.cart_count_one' | t: count: cart.item_count | escape }}"{% else %} aria-label="{{ 'accessibility.cart_count_other' | t: count: cart.item_count | escape }}"{% endif %}><span>{{ 'accessibility.cart' | t }}</span><span class="cart-count">{{ cart.item_count }}</span></a>
   </div>
 </header>
 
 {% schema %}
 {
-  "name": "Cabeçalho Sophie Barlee",
+  "name": "Sophie Barlee header",
   "settings": [
-    { "type": "paragraph", "content": "Escolhe o menu principal nas definições do tema. Os destinos são geridos em Navegação no Shopify." },
-    { "type": "checkbox", "id": "show_search", "label": "Mostrar pesquisa", "default": true }
+    { "type": "paragraph", "content": "Choose the main menu in theme settings. Edit menu links under Shopify navigation." },
+    { "type": "checkbox", "id": "show_search", "label": "Show search", "default": true }
   ]
 }
 {% endschema %}

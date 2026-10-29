@@ -3,7 +3,7 @@
 <article class="product-card">
   <a class="product-photo" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
     {% if product_image != blank %}<img src="{{ product_image | image_url: width: 900 }}" srcset="{{ product_image | image_url: width: 320 }} 320w, {{ product_image | image_url: width: 480 }} 480w, {{ product_image | image_url: width: 640 }} 640w, {{ product_image | image_url: width: 900 }} 900w" sizes="(min-width: 900px) 25vw, 50vw" width="{{ product_image.width }}" height="{{ product_image.height }}" alt="{{ product_alt | escape }}" loading="lazy">{% endif %}
-    {% unless product.available %}<span class="product-status">Indisponível</span>{% endunless %}
+    {% unless product.available %}<span class="product-status">{{ 'products.sold_out' | t }}</span>{% endunless %}
   </a>
   <div class="product-card-copy"><a href="{{ product.url }}">{{ product.title | escape }}</a><span class="product-price">{% render 'price', product: product %}</span></div>
 </article>

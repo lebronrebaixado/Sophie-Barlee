@@ -310,3 +310,15 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: .98; }
 
 product-recommendations { display: block; }
 product-recommendations[hidden] { display: none; }
+
+
+/* Shopify language selector */
+.language-picker { display: flex; align-items: center; }
+.language-form { display: flex; align-items: center; gap: .25rem; margin: 0; }
+.language-form select { max-width: 7.5rem; min-height: 36px; padding: .3rem .25rem; border: 0; border-bottom: 1px solid var(--taupe); border-radius: 0; background: transparent; color: var(--brown); font-size: .62rem; }
+.language-submit { min-height: 36px; padding: .3rem .4rem; border: 1px solid var(--line); background: transparent; color: var(--brown); cursor: pointer; font-size: .58rem; }
+.js .language-submit { display: none; }
+@media (max-width: 900px) {
+  .language-form select { max-width: 5.5rem; font-size: .58rem; }
+  .language-form { gap: .15rem; }
+}

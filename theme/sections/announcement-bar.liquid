@@ -1,18 +1,16 @@
-{% if section.settings.message != blank %}
-  <div class="announcement-bar" role="status">
-    {% if section.settings.link != blank %}<a href="{{ section.settings.link }}">{% endif %}
-      <p>{{ section.settings.message | escape }}</p>
-    {% if section.settings.link != blank %}</a>{% endif %}
-  </div>
-{% endif %}
+<div class="announcement-bar" role="status">
+  {% if section.settings.link != blank %}<a href="{{ section.settings.link }}">{% endif %}
+    <p>{% render 'localized-copy', value: section.settings.message, translation_key: 'home.announcement' %}</p>
+  {% if section.settings.link != blank %}</a>{% endif %}
+</div>
 
 {% schema %}
 {
-  "name": "Barra de anúncio",
+  "name": "Announcement bar",
   "settings": [
-    { "type": "text", "id": "message", "label": "Mensagem", "default": "Descobre a nova coleção Sophie Barlee." },
-    { "type": "url", "id": "link", "label": "Ligação opcional" }
+    { "type": "text", "id": "message", "label": "Message override (optional)", "default": "" },
+    { "type": "url", "id": "link", "label": "Optional link" }
   ],
-  "presets": [{ "name": "Barra de anúncio" }]
+  "presets": [{ "name": "Announcement bar" }]
 }
 {% endschema %}

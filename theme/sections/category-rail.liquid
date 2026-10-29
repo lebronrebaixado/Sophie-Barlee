@@ -2,7 +2,7 @@
 {% for block in section.blocks %}{% if block.settings.collection != blank and block.settings.collection.products_count > 0 %}{% assign has_categories = true %}{% endif %}{% endfor %}
 {% if has_categories %}
   <section class="category-rail section" aria-labelledby="CategoryTitle-{{ section.id }}" data-category-rail>
-    <div class="rail-heading"><p class="eyebrow">{{ section.settings.eyebrow | escape }}</p><h2 id="CategoryTitle-{{ section.id }}">{{ section.settings.title | escape }}</h2></div>
+    <div class="rail-heading"><p class="eyebrow">{% render 'localized-copy', value: section.settings.eyebrow, translation_key: 'home.categories.eyebrow' %}</p><h2 id="CategoryTitle-{{ section.id }}">{% render 'localized-copy', value: section.settings.title, translation_key: 'home.categories.title' %}</h2></div>
     <div class="rail-scroll" role="list">
       {% for block in section.blocks %}
         {% assign collection = block.settings.collection %}
@@ -20,18 +20,18 @@
 
 {% schema %}
 {
-  "name": "Categorias visuais",
+  "name": "Visual categories",
   "max_blocks": 7,
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Linha editorial", "default": "Encontra o teu ritmo" },
-    { "type": "text", "id": "title", "label": "Título", "default": "Explora por coleção" }
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow override (optional)", "default": "" },
+    { "type": "text", "id": "title", "label": "Title override (optional)", "default": "" }
   ],
   "blocks": [
-    { "type": "category", "name": "Categoria Shopify", "settings": [
-      { "type": "collection", "id": "collection", "label": "Coleção" },
-      { "type": "text", "id": "label", "label": "Título opcional" }
+    { "type": "category", "name": "Shopify collection", "settings": [
+      { "type": "collection", "id": "collection", "label": "Collection" },
+      { "type": "text", "id": "label", "label": "Optional label" }
     ] }
   ],
-  "presets": [{ "name": "Categorias visuais", "blocks": [] }]
+  "presets": [{ "name": "Visual categories", "blocks": [] }]
 }
 {% endschema %}

@@ -9,7 +9,7 @@ THEME = ROOT / 'theme'
 OUT = ROOT / 'dist' / 'sophie-barlee-shopify-theme.zip'
 REQUIRED = [
     'layout/theme.liquid', 'config/settings_schema.json', 'config/settings_data.json',
-    'locales/pt-PT.json', 'locales/en.default.json', 'sections/header-group.json', 'sections/footer-group.json',
+    'locales/en.default.json', 'locales/fr-BE.json', 'locales/nl-BE.json', 'sections/header-group.json', 'sections/footer-group.json',
     'templates/index.json', 'templates/product.json', 'templates/collection.json',
     'templates/search.json', 'templates/cart.json', 'templates/page.json', 'templates/404.json',
 ]
@@ -49,10 +49,39 @@ def flatten_keys(data, prefix=''):
             keys.add(full)
     return keys
 locale_files = {
-    'pt-PT': THEME / 'locales/pt-PT.json',
     'en.default': THEME / 'locales/en.default.json',
+    'fr-BE': THEME / 'locales/fr-BE.json',
+    'nl-BE': THEME / 'locales/nl-BE.json',
 }
-locale_keys = {name: flatten_keys(json.loads(path.read_text(encoding='utf-8'))) for name, path in locale_files.items()}
+if (THEME / 'locales/pt-PT.json').exists():
+    raise SystemExit('Portuguese locale is not permitted in this storefront theme')
+locale_data = {name: json.loads(path.read_text(encoding='utf-8')) for name, path in locale_files.items()}
+locale_keys = {name: flatten_keys(data) for name, data in locale_data.items()}
+default_keys = locale_keys['en.default']
+for name, keys in locale_keys.items():
+    missing = default_keys - keys
+    extra = keys - default_keys
+    if missing or extra:
+        raise SystemExit(f'Locale key mismatch in {name}: missing={sorted(missing)} extra={sorted(extra)}')
+
+def flatten_values(data, prefix=''):
+    values = {}
+    for key, value in data.items():
+        full = f'{prefix}.{key}' if prefix else key
+        if isinstance(value, dict):
+            values.update(flatten_values(value, full))
+        else:
+            values[full] = value
+    return values
+
+default_values = flatten_values(locale_data['en.default'])
+for name, data in locale_data.items():
+    values = flatten_values(data)
+    for key in default_keys:
+        default_tokens = set(re.findall(r'{{\s*(\w+)\s*}}', default_values[key]))
+        locale_tokens = set(re.findall(r'{{\s*(\w+)\s*}}', values[key]))
+        if default_tokens != locale_tokens:
+            raise SystemExit(f'Interpolation token mismatch in {name}:{key}: {sorted(locale_tokens)} != {sorted(default_tokens)}')
 open_to_close = {'if': 'endif', 'unless': 'endunless', 'for': 'endfor', 'case': 'endcase', 'capture': 'endcapture', 'form': 'endform', 'paginate': 'endpaginate', 'schema': 'endschema', 'comment': 'endcomment'}
 closing_to_open = {closing: opening for opening, closing in open_to_close.items()}
 liquid_files = list(THEME.rglob('*.liquid'))

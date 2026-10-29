@@ -1,39 +1,152 @@
 {
   "accessibility": {
-    "skip_to_content": "Saltar para o conteúdo",
-    "open_menu": "Abrir menu",
-    "close_menu": "Fechar menu",
-    "search": "Pesquisar",
-    "cart": "Carrinho",
-    "close": "Fechar",
-    "previous": "Anterior",
-    "next": "Seguinte"
+    "skip_to_content": "Skip to content",
+    "open_menu": "Open menu",
+    "close_menu": "Close menu",
+    "search": "Search",
+    "cart": "Shopping bag",
+    "home_link": "{{ shop_name }} home page",
+    "primary_navigation": "Main navigation",
+    "open_submenu": "Open {{ menu_item }} submenu",
+    "cart_count_one": "{{ count }} item in your shopping bag",
+    "cart_count_other": "{{ count }} items in your shopping bag"
+  },
+  "account": {
+    "label": "Account"
+  },
+  "localization": {
+    "language": "Language",
+    "apply": "Go"
   },
   "products": {
-    "add_to_cart": "Adicionar ao carrinho",
-    "sold_out": "Indisponível",
-    "choose_variant": "Escolhe as opções",
-    "size_guide": "Guia de tamanhos",
-    "empty_collection": "Ainda não existem artigos nesta coleção.",
-    "empty_new_arrivals": "As novidades serão apresentadas aqui quando estiverem disponíveis."
+    "add_to_cart": "Add to bag",
+    "sold_out": "Out of stock",
+    "choose_variant": "Choose an option",
+    "size_guide": "Size guide",
+    "empty_collection": "There are currently no products in this collection.",
+    "gallery": "Images of {{ product_title }}",
+    "composition": "Composition",
+    "fit": "Fit and sizing"
   },
   "cart": {
-    "title": "O teu carrinho",
-    "empty": "O teu carrinho está vazio.",
-    "continue_shopping": "Continuar a explorar",
-    "update": "Atualizar carrinho",
-    "checkout": "Continuar para o checkout",
-    "remove": "Remover"
+    "title": "Your bag",
+    "empty": "Your bag is empty.",
+    "continue_shopping": "Continue shopping",
+    "update": "Update bag",
+    "checkout": "Continue to checkout",
+    "remove": "Remove",
+    "quantity": "Quantity",
+    "subtotal": "Subtotal",
+    "shipping_tax_note": "Delivery and tax details are shown before you place your order."
   },
   "search": {
-    "title": "Pesquisa",
-    "placeholder": "O que procuras?",
-    "submit": "Pesquisar",
-    "no_results": "Não encontrámos resultados para esta pesquisa."
+    "title": "Search",
+    "placeholder": "What are you looking for?",
+    "submit": "Search",
+    "no_results": "We couldn’t find any products for this search.",
+    "no_results_hint": "Try another search or explore the available collections."
+  },
+  "collections": {
+    "eyebrow": "Sophie Barlee · Collections",
+    "product_count_one": "{{ count }} item",
+    "product_count_other": "{{ count }} items",
+    "continue_exploring": "Continue exploring"
+  },
+  "filters": {
+    "price_min": "From",
+    "price_max": "To",
+    "clear": "Clear {{ filter_label }}",
+    "apply": "Apply filters"
+  },
+  "pagination": {
+    "label": "Pagination",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "errors": {
+    "404": {
+      "eyebrow": "404 · Sophie Barlee",
+      "title": "This page is unavailable.",
+      "body": "The address may have changed or the page may no longer exist.",
+      "home_link": "Back to the home page"
+    }
   },
   "newsletter": {
-    "success": "A tua inscrição foi recebida.",
-    "error": "Não foi possível concluir a inscrição. Tenta novamente.",
-    "consent": "Concordo em receber novidades por email. Posso cancelar a subscrição em qualquer momento."
+    "success": "Thanks for subscribing.",
+    "error": "We couldn’t complete your subscription. Please try again.",
+    "consent": "I agree to receive updates by email. I can unsubscribe at any time.",
+    "email_placeholder": "you@example.co.uk",
+    "eyebrow": "Get the latest",
+    "title": "Step into the Sophie Barlee world.",
+    "copy": "Receive new arrivals, style inspiration and updates on upcoming collections.",
+    "email_label": "Your email address",
+    "submit": "Subscribe"
+  },
+  "home": {
+    "announcement": "Discover the new Sophie Barlee collection.",
+    "hero": {
+      "image_alt": "Sophie Barlee fashion campaign in a contemporary interior",
+      "eyebrow": "SOPHIE BARLEE · THE NEW SEASON",
+      "title": "Discover your next look.",
+      "subtitle": "Styles to take you from everyday moments to special occasions.",
+      "button": "Explore the collection",
+      "caption": "Your style. Your signature."
+    },
+    "categories": {
+      "eyebrow": "Find your rhythm",
+      "title": "Explore by collection"
+    },
+    "collections": {
+      "eyebrow": "Choose your next chapter",
+      "title": "Discover the collections",
+      "link": "Discover"
+    },
+    "featured_collections": {
+      "eyebrow": "The Sophie selection",
+      "title": "Featured collections"
+    },
+    "trending": {
+      "eyebrow": "Current favourites",
+      "title": "In focus"
+    },
+    "editorial": {
+      "region": "Editorial collections",
+      "everyday_eyebrow": "For every day",
+      "everyday_title": "Everyday Elegance",
+      "everyday_copy": "Versatile pieces to elevate your everyday looks.",
+      "everyday_link": "Discover the collection",
+      "accessories_eyebrow": "The finishing touch",
+      "accessories_title": "The Accessories Edit",
+      "accessories_copy": "The details that bring personality to every look.",
+      "accessories_link": "Explore accessories"
+    },
+    "campaign": {
+      "image_alt": "Sophie Barlee editorial campaign featuring three women in contemporary looks",
+      "eyebrow": "A PERSONAL EXPRESSION",
+      "title": "THE SOPHIE EDIT",
+      "subtitle": "A curated selection to express your style.",
+      "button": "Explore the edit"
+    },
+    "arrivals": {
+      "eyebrow": "Just in",
+      "title": "New arrivals",
+      "view_all": "View all new arrivals",
+      "empty_title": "There are currently no products available.",
+      "empty_copy": "New arrivals will appear here when products are available in the shop."
+    }
+  },
+  "footer": {
+    "description": "Contemporary fashion for every side of you.",
+    "menu_heading": "Support and information",
+    "support_navigation": "Support and information",
+    "policies_navigation": "Shop policies",
+    "signature": "Define your style. Write your own rules."
+  },
+  "recommendations": {
+    "eyebrow": "Complete the look",
+    "title": "You might also like"
+  },
+  "seo": {
+    "default_description": "Contemporary womenswear and accessories for everyday life and special occasions."
   }
 }

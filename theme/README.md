@@ -1,9 +1,11 @@
-# Sophie Barlee — Shopify theme
+# Sophie Barlee Shopify theme
 
-Tema Online Store 2.0 em Liquid. As secções são configuráveis no editor de temas; menus e merchandising usam objetos Shopify, sem artigos de demonstração.
+An Online Store 2.0 Liquid theme. Sections are editable in the Shopify theme editor; navigation and merchandising use real Shopify objects, without demo products.
 
-Compatibilidade pretendida: Shopify Online Store 2.0. O tema usa as rotas, formulários, produtos, coleções, políticas e filtros nativos do Shopify. As imagens de produto vêm do catálogo. Cinco imagens editoriais de campanha estão incluídas no pacote como fallbacks visuais, e os respetivos controlos de imagem continuam editáveis no editor; estas imagens não representam produtos disponíveis.
+The package contains three complete theme locales: `en.default.json` (British English default), `fr-BE.json` (Belgian French), and `nl-BE.json` (Belgian Dutch). It contains no Portuguese locale. The language selector uses Shopify's native localization form and displays only languages currently enabled and published by the merchant. The Liquid document `lang` attribute follows the active language. Shopify's `stylesheet_tag` filter loads the theme CSS.
 
-O pacote inclui os locales `pt-PT.json` e `en.default.json` para evitar mensagens de tradução em lojas cujo locale predefinido seja inglês. A folha de estilos é ligada através do filtro nativo `stylesheet_tag` do Shopify.
+Locale files translate fixed theme copy only. Leave optional theme-editor copy overrides blank to retain the active locale's default wording, or supply a translation for each active language. Merchant-authored content—product titles/descriptions/options, collection titles/descriptions, navigation menus, pages, policies, blog content and email notifications—must be translated and published in Shopify. Add and publish French and Dutch under **Settings → Languages**, assign each to the intended Markets, then translate catalogue and page content with Shopify Translate & Adapt. Theme locale files do not activate languages or change Markets.
 
-Antes de publicar: instalar como tema não publicado, confirmar no preview que CSS, fontes, imagens e textos carregam, escolher o menu, inserir apenas coleções reais, confirmar páginas de tamanhos/políticas/contactos, testar variantes e carrinho e validar os requisitos comerciais e legais do catálogo.
+Five generated editorial campaign images are included as fallbacks: a desktop hero, a mobile hero, two editorial panels and a panoramic campaign banner. These are not product photos or product availability claims; each image can be replaced in the theme editor.
+
+Before publishing: install the ZIP as an unpublished theme, check that CSS, fonts, images and all three locales render correctly, configure the real menu and collections, review size-guide/policy/contact pages, test product variants and the native bag/checkout, and validate all product/commercial/legal facts. No store language setting, active theme, catalogue item or publication state has been changed by building this theme.

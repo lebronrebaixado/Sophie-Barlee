@@ -1,45 +1,44 @@
 {% assign hero_image = section.settings.desktop_image | default: section.settings.mobile_image %}
 {% assign mobile_image = section.settings.mobile_image | default: hero_image %}
-{% assign hero_alt = section.settings.image_alt | default: section.settings.title %}
+{% assign hero_url = section.settings.button_link %}
+{% if section.settings.collection != blank %}{% assign hero_url = section.settings.collection.url %}{% endif %}
 <section class="hero" aria-labelledby="HeroTitle-{{ section.id }}">
   {% if hero_image != blank %}
     <picture class="hero-media">
       {% if mobile_image != blank %}<source media="(max-width: 700px)" srcset="{{ mobile_image | image_url: width: 1000 }}">{% endif %}
-      <img class="hero-image" src="{{ hero_image | image_url: width: 2400 }}" srcset="{{ hero_image | image_url: width: 900 }} 900w, {{ hero_image | image_url: width: 1200 }} 1200w, {{ hero_image | image_url: width: 1800 }} 1800w, {{ hero_image | image_url: width: 2400 }} 2400w" sizes="100vw" width="{{ hero_image.width }}" height="{{ hero_image.height }}" alt="{{ hero_alt | escape }}" fetchpriority="high">
+      <img class="hero-image" src="{{ hero_image | image_url: width: 2400 }}" srcset="{{ hero_image | image_url: width: 900 }} 900w, {{ hero_image | image_url: width: 1200 }} 1200w, {{ hero_image | image_url: width: 1800 }} 1800w, {{ hero_image | image_url: width: 2400 }} 2400w" sizes="100vw" width="{{ hero_image.width }}" height="{{ hero_image.height }}" alt="{% render 'localized-copy', value: section.settings.image_alt, translation_key: 'home.hero.image_alt' %}" fetchpriority="high">
     </picture>
   {% else %}
     <picture class="hero-media">
       <source media="(max-width: 700px)" srcset="{{ 'sophie-hero-mobile.webp' | asset_url }}">
-      <img class="hero-image" src="{{ 'sophie-hero-desktop.webp' | asset_url }}" alt="{{ hero_alt | escape }}" fetchpriority="high">
+      <img class="hero-image" src="{{ 'sophie-hero-desktop.webp' | asset_url }}" alt="{% render 'localized-copy', value: section.settings.image_alt, translation_key: 'home.hero.image_alt' %}" fetchpriority="high">
     </picture>
   {% endif %}
   <div class="hero-shade"></div>
   <div class="hero-copy">
-    {% if section.settings.eyebrow != blank %}<p class="eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif %}
-    <h1 id="HeroTitle-{{ section.id }}">{{ section.settings.title | escape | newline_to_br }}</h1>
-    {% if section.settings.subtitle != blank %}<p>{{ section.settings.subtitle | escape }}</p>{% endif %}
-    {% assign hero_url = section.settings.button_link %}
-    {% if section.settings.collection != blank %}{% assign hero_url = section.settings.collection.url %}{% endif %}
-    {% if section.settings.button_label != blank %}<a class="button button-light" href="{{ hero_url | default: routes.all_products_collection_url }}">{{ section.settings.button_label | escape }} <span aria-hidden="true">↗</span></a>{% endif %}
+    <p class="eyebrow">{% render 'localized-copy', value: section.settings.eyebrow, translation_key: 'home.hero.eyebrow' %}</p>
+    <h1 id="HeroTitle-{{ section.id }}">{% render 'localized-copy', value: section.settings.title, translation_key: 'home.hero.title' %}</h1>
+    <p>{% render 'localized-copy', value: section.settings.subtitle, translation_key: 'home.hero.subtitle' %}</p>
+    <a class="button button-light" href="{{ hero_url | default: routes.all_products_collection_url }}">{% render 'localized-copy', value: section.settings.button_label, translation_key: 'home.hero.button' %} <span aria-hidden="true">↗</span></a>
   </div>
-  {% if section.settings.caption != blank %}<span class="hero-caption">{{ section.settings.caption | escape }}</span>{% endif %}
+  <span class="hero-caption">{% render 'localized-copy', value: section.settings.caption, translation_key: 'home.hero.caption' %}</span>
 </section>
 
 {% schema %}
 {
-  "name": "Hero Sophie Barlee",
+  "name": "Sophie Barlee hero",
   "settings": [
-    { "type": "image_picker", "id": "desktop_image", "label": "Imagem desktop" },
-    { "type": "image_picker", "id": "mobile_image", "label": "Imagem mobile" },
-    { "type": "text", "id": "image_alt", "label": "Texto alternativo da imagem", "default": "Campanha editorial Sophie Barlee" },
-    { "type": "text", "id": "eyebrow", "label": "Linha editorial", "default": "SOPHIE BARLEE · NOVA ESTAÇÃO" },
-    { "type": "text", "id": "title", "label": "Título", "default": "Descobre o teu próximo look." },
-    { "type": "textarea", "id": "subtitle", "label": "Subtítulo", "default": "Peças que acompanham o teu estilo, do quotidiano às ocasiões especiais." },
-    { "type": "text", "id": "button_label", "label": "Texto do botão", "default": "Explorar a coleção" },
-    { "type": "collection", "id": "collection", "label": "Coleção de destino" },
-    { "type": "url", "id": "button_link", "label": "Ligação alternativa" },
-    { "type": "text", "id": "caption", "label": "Assinatura", "default": "O teu estilo. A tua assinatura." }
+    { "type": "image_picker", "id": "desktop_image", "label": "Desktop image" },
+    { "type": "image_picker", "id": "mobile_image", "label": "Mobile image" },
+    { "type": "text", "id": "image_alt", "label": "Image alt text override (optional)", "default": "" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow override (optional)", "default": "" },
+    { "type": "text", "id": "title", "label": "Title override (optional)", "default": "" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle override (optional)", "default": "" },
+    { "type": "text", "id": "button_label", "label": "Button label override (optional)", "default": "" },
+    { "type": "collection", "id": "collection", "label": "Destination collection" },
+    { "type": "url", "id": "button_link", "label": "Alternative link" },
+    { "type": "text", "id": "caption", "label": "Caption override (optional)", "default": "" }
   ],
-  "presets": [{ "name": "Hero Sophie Barlee" }]
+  "presets": [{ "name": "Sophie Barlee hero" }]
 }
 {% endschema %}

@@ -1,11 +1,11 @@
 <section class="newsletter" aria-labelledby="NewsletterTitle-{{ section.id }}">
-  <div class="newsletter-copy"><p class="eyebrow">{{ section.settings.eyebrow | escape }}</p><h2 id="NewsletterTitle-{{ section.id }}">{{ section.settings.title | escape | newline_to_br }}</h2><p>{{ section.settings.copy | escape }}</p></div>
+  <div class="newsletter-copy"><p class="eyebrow">{% render 'localized-copy', value: section.settings.eyebrow, translation_key: 'newsletter.eyebrow' %}</p><h2 id="NewsletterTitle-{{ section.id }}">{% render 'localized-copy', value: section.settings.title, translation_key: 'newsletter.title' %}</h2><p>{% render 'localized-copy', value: section.settings.copy, translation_key: 'newsletter.copy' %}</p></div>
   {% assign newsletter_form_id = 'NewsletterForm-' | append: section.id %}
   {% form 'customer', id: newsletter_form_id, class: 'newsletter-form' %}
     <input type="hidden" name="contact[tags]" value="newsletter">
-    <label for="NewsletterEmail-{{ section.id }}">{{ section.settings.email_label | escape }}</label>
-    <div class="newsletter-field"><input id="NewsletterEmail-{{ section.id }}" type="email" name="contact[email]" value="{{ form.email | escape }}" autocomplete="email" autocorrect="off" autocapitalize="off" required><button type="submit">{{ section.settings.button_label | escape }} <span aria-hidden="true">↗</span></button></div>
-    <label class="consent"><input type="checkbox" name="contact[accepts_marketing]" value="true" required><span>{{ section.settings.consent | escape }}{% if shop.policies.privacy_policy != blank %} <a href="{{ shop.policies.privacy_policy.url }}">{{ shop.policies.privacy_policy.title | escape }}</a>{% endif %}</span></label>
+    <label for="NewsletterEmail-{{ section.id }}">{% render 'localized-copy', value: section.settings.email_label, translation_key: 'newsletter.email_label' %}</label>
+    <div class="newsletter-field"><input id="NewsletterEmail-{{ section.id }}" type="email" name="contact[email]" value="{{ form.email | escape }}" autocomplete="email" autocorrect="off" autocapitalize="off" placeholder="{{ 'newsletter.email_placeholder' | t | escape }}" required><button type="submit">{% render 'localized-copy', value: section.settings.button_label, translation_key: 'newsletter.submit' %} <span aria-hidden="true">↗</span></button></div>
+    <label class="consent"><input type="checkbox" name="contact[accepts_marketing]" value="true" required><span>{% render 'localized-copy', value: section.settings.consent, translation_key: 'newsletter.consent' %}{% if shop.policies.privacy_policy != blank %} <a href="{{ shop.policies.privacy_policy.url }}">{{ shop.policies.privacy_policy.title | escape }}</a>{% endif %}</span></label>
     {% if form.posted_successfully? %}<p class="form-feedback" role="status">{{ 'newsletter.success' | t }}</p>{% endif %}
     {% if form.errors %}<div class="form-feedback" role="alert">{{ 'newsletter.error' | t }} {{ form.errors | default_errors }}</div>{% endif %}
   {% endform %}
@@ -13,15 +13,15 @@
 
 {% schema %}
 {
-  "name": "Newsletter Sophie Barlee",
+  "name": "Sophie Barlee newsletter",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Linha editorial", "default": "Recebe novidades" },
-    { "type": "text", "id": "title", "label": "Título", "default": "Entra no universo Sophie Barlee." },
-    { "type": "textarea", "id": "copy", "label": "Texto", "default": "Recebe novidades, inspirações de estilo e informações sobre novas coleções." },
-    { "type": "text", "id": "email_label", "label": "Label do email", "default": "O teu endereço de email" },
-    { "type": "text", "id": "button_label", "label": "Texto do botão", "default": "Subscrever" },
-    { "type": "textarea", "id": "consent", "label": "Consentimento", "default": "Concordo em receber novidades por email. Posso cancelar a subscrição em qualquer momento." }
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow override (optional)", "default": "" },
+    { "type": "text", "id": "title", "label": "Title override (optional)", "default": "" },
+    { "type": "textarea", "id": "copy", "label": "Copy override (optional)", "default": "" },
+    { "type": "text", "id": "email_label", "label": "Email label override (optional)", "default": "" },
+    { "type": "text", "id": "button_label", "label": "Button label override (optional)", "default": "" },
+    { "type": "textarea", "id": "consent", "label": "Consent text override (optional)", "default": "" }
   ],
-  "presets": [{ "name": "Newsletter Sophie Barlee" }]
+  "presets": [{ "name": "Sophie Barlee newsletter" }]
 }
 {% endschema %}

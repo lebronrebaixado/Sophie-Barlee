@@ -1,0 +1,27 @@
+{
+  "accessibility": { "skip_to_content": "Aller au contenu", "open_menu": "Ouvrir le menu", "close_menu": "Fermer le menu", "search": "Rechercher", "cart": "Panier", "home_link": "Page d’accueil de {{ shop_name }}", "primary_navigation": "Navigation principale", "open_submenu": "Ouvrir le sous-menu {{ menu_item }}", "cart_count_one": "{{ count }} article dans votre panier", "cart_count_other": "{{ count }} articles dans votre panier" },
+  "account": { "label": "Compte" },
+  "localization": { "language": "Langue", "apply": "Appliquer" },
+  "products": { "add_to_cart": "Ajouter au panier", "sold_out": "Épuisé", "choose_variant": "Choisir une option", "size_guide": "Guide des tailles", "empty_collection": "Aucun produit dans cette collection pour le moment.", "gallery": "Images de {{ product_title }}", "composition": "Composition", "fit": "Coupe et taille" },
+  "cart": { "title": "Votre panier", "empty": "Votre panier est vide.", "continue_shopping": "Continuer vos achats", "update": "Mettre à jour le panier", "checkout": "Passer au paiement", "remove": "Retirer", "quantity": "Quantité", "subtotal": "Sous-total", "shipping_tax_note": "Les informations relatives à la livraison et aux taxes sont affichées avant la confirmation de votre commande." },
+  "search": { "title": "Rechercher", "placeholder": "Que recherchez-vous ?", "submit": "Rechercher", "no_results": "Aucun produit ne correspond à votre recherche.", "no_results_hint": "Essayez un autre terme ou explorez les collections disponibles." },
+  "collections": { "eyebrow": "Sophie Barlee · Collections", "product_count_one": "{{ count }} produit", "product_count_other": "{{ count }} produits", "continue_exploring": "Continuer à explorer" },
+  "filters": { "price_min": "À partir de", "price_max": "Jusqu’à", "clear": "Effacer {{ filter_label }}", "apply": "Appliquer les filtres" },
+  "pagination": { "label": "Pagination", "previous": "Précédent", "next": "Suivant" },
+  "errors": { "404": { "eyebrow": "404 · Sophie Barlee", "title": "Cette page n’est pas disponible.", "body": "L’adresse a peut-être changé ou cette page n’existe plus.", "home_link": "Retour à la page d’accueil" } },
+  "newsletter": { "success": "Merci pour votre inscription.", "error": "Votre inscription n’a pas pu être finalisée. Veuillez réessayer.", "consent": "J’accepte de recevoir des actualités par e-mail. Je peux me désabonner à tout moment.", "email_placeholder": "nom@exemple.be", "eyebrow": "Recevez nos actualités", "title": "Entrez dans l’univers Sophie Barlee.", "copy": "Recevez nos nouveautés, des inspirations de style et des informations sur les nouvelles collections.", "email_label": "Votre adresse e-mail", "submit": "S’inscrire" },
+  "home": {
+    "announcement": "Découvrez la nouvelle collection Sophie Barlee.",
+    "hero": { "image_alt": "Campagne Sophie Barlee dans un intérieur contemporain", "eyebrow": "SOPHIE BARLEE · LA NOUVELLE SAISON", "title": "Découvrez votre prochain look.", "subtitle": "Des pièces qui vous accompagnent au quotidien comme lors des grandes occasions.", "button": "Découvrir la collection", "caption": "Votre style. Votre signature." },
+    "categories": { "eyebrow": "Trouvez votre rythme", "title": "Explorer les collections" },
+    "collections": { "eyebrow": "Choisissez votre prochain chapitre", "title": "Découvrir les collections", "link": "Découvrir" },
+    "featured_collections": { "eyebrow": "La sélection Sophie", "title": "Collections en vedette" },
+    "trending": { "eyebrow": "Les coups de cœur du moment", "title": "À découvrir" },
+    "editorial": { "region": "Collections éditoriales", "everyday_eyebrow": "Pour tous les jours", "everyday_title": "Élégance au quotidien", "everyday_copy": "Des pièces polyvalentes pour rehausser vos tenues de tous les jours.", "everyday_link": "Découvrir la collection", "accessories_eyebrow": "La touche finale", "accessories_title": "La sélection d’accessoires", "accessories_copy": "Les détails qui apportent du caractère à chaque tenue.", "accessories_link": "Découvrir les accessoires" },
+    "campaign": { "image_alt": "Campagne éditoriale Sophie Barlee avec trois femmes aux tenues contemporaines", "eyebrow": "UNE EXPRESSION PERSONNELLE", "title": "THE SOPHIE EDIT", "subtitle": "Une sélection pensée pour exprimer votre style.", "button": "Découvrir la sélection" },
+    "arrivals": { "eyebrow": "Tout juste arrivés", "title": "Nouveautés", "view_all": "Voir toutes les nouveautés", "empty_title": "Aucun produit n’est disponible pour le moment.", "empty_copy": "Les nouveautés apparaîtront ici dès que des produits seront disponibles dans la boutique." }
+  },
+  "footer": { "description": "Une mode qui accompagne toutes vos facettes.", "menu_heading": "Aide et informations", "support_navigation": "Aide et informations", "policies_navigation": "Informations de la boutique", "signature": "Définissez votre style. Écrivez vos propres règles." },
+  "recommendations": { "eyebrow": "Complétez votre look", "title": "Vous aimerez peut-être aussi" },
+  "seo": { "default_description": "Des vêtements et accessoires contemporains pour le quotidien comme pour les grandes occasions." }
+}

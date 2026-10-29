@@ -1,31 +1,46 @@
-<section class="editorial section" aria-label="Linhas editoriais">
+{% assign everyday_alt = 'home.editorial.everyday_title' | t %}
+{% assign accessories_alt = 'home.editorial.accessories_title' | t %}
+<section class="editorial section" aria-label="{{ 'home.editorial.region' | t | escape }}">
   {% for block in section.blocks %}
+    {% if forloop.index == 2 %}
+      {% assign eyebrow_key = 'home.editorial.accessories_eyebrow' %}
+      {% assign title_key = 'home.editorial.accessories_title' %}
+      {% assign copy_key = 'home.editorial.accessories_copy' %}
+      {% assign link_key = 'home.editorial.accessories_link' %}
+      {% assign fallback_alt = accessories_alt %}
+    {% else %}
+      {% assign eyebrow_key = 'home.editorial.everyday_eyebrow' %}
+      {% assign title_key = 'home.editorial.everyday_title' %}
+      {% assign copy_key = 'home.editorial.everyday_copy' %}
+      {% assign link_key = 'home.editorial.everyday_link' %}
+      {% assign fallback_alt = everyday_alt %}
+    {% endif %}
     <a class="editorial-panel" href="{% if block.settings.collection != blank %}{{ block.settings.collection.url }}{% else %}{{ block.settings.link | default: routes.all_products_collection_url }}{% endif %}" {{ block.shopify_attributes }}>
-      {% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 720, 960, 1200', sizes: '(min-width: 900px) 50vw, 100vw', alt: block.settings.image_alt | default: block.settings.title }}{% elsif forloop.index == 1 %}<img src="{{ 'sophie-editorial-everyday.webp' | asset_url }}" alt="{{ block.settings.image_alt | default: block.settings.title | escape }}" loading="lazy">{% else %}<img src="{{ 'sophie-editorial-accessories.webp' | asset_url }}" alt="{{ block.settings.image_alt | default: block.settings.title | escape }}" loading="lazy">{% endif %}
-      <span class="editorial-overlay"><span class="eyebrow">{{ block.settings.eyebrow | escape }}</span><strong>{{ block.settings.title | escape }}</strong><span>{{ block.settings.copy | escape }}</span><span class="text-link">{{ block.settings.button_label | escape }} <span aria-hidden="true">↗</span></span></span>
+      {% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 720, 960, 1200', sizes: '(min-width: 900px) 50vw, 100vw', alt: block.settings.image_alt | default: fallback_alt }}{% elsif forloop.index == 1 %}<img src="{{ 'sophie-editorial-everyday.webp' | asset_url }}" alt="{{ block.settings.image_alt | default: fallback_alt | escape }}" loading="lazy">{% else %}<img src="{{ 'sophie-editorial-accessories.webp' | asset_url }}" alt="{{ block.settings.image_alt | default: fallback_alt | escape }}" loading="lazy">{% endif %}
+      <span class="editorial-overlay"><span class="eyebrow">{% render 'localized-copy', value: block.settings.eyebrow, translation_key: eyebrow_key %}</span><strong>{% render 'localized-copy', value: block.settings.title, translation_key: title_key %}</strong><span>{% render 'localized-copy', value: block.settings.copy, translation_key: copy_key %}</span><span class="text-link">{% render 'localized-copy', value: block.settings.button_label, translation_key: link_key %} <span aria-hidden="true">↗</span></span></span>
     </a>
   {% endfor %}
 </section>
 
 {% schema %}
 {
-  "name": "Banners editoriais",
+  "name": "Editorial banners",
   "max_blocks": 2,
   "blocks": [
-    { "type": "editorial", "name": "Banner editorial", "settings": [
-      { "type": "image_picker", "id": "image", "label": "Imagem editorial" },
-      { "type": "text", "id": "image_alt", "label": "Texto alternativo" },
-      { "type": "text", "id": "eyebrow", "label": "Linha curta" },
-      { "type": "text", "id": "title", "label": "Título", "default": "Everyday Elegance" },
-      { "type": "textarea", "id": "copy", "label": "Texto", "default": "Peças versáteis para elevar os teus looks diários." },
-      { "type": "text", "id": "button_label", "label": "Texto do botão", "default": "Descobrir a coleção" },
-      { "type": "collection", "id": "collection", "label": "Coleção de destino" },
-      { "type": "url", "id": "link", "label": "Ligação alternativa" }
+    { "type": "editorial", "name": "Editorial banner", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Editorial image" },
+      { "type": "text", "id": "image_alt", "label": "Image alt text override (optional)", "default": "" },
+      { "type": "text", "id": "eyebrow", "label": "Eyebrow override (optional)", "default": "" },
+      { "type": "text", "id": "title", "label": "Title override (optional)", "default": "" },
+      { "type": "textarea", "id": "copy", "label": "Copy override (optional)", "default": "" },
+      { "type": "text", "id": "button_label", "label": "Button label override (optional)", "default": "" },
+      { "type": "collection", "id": "collection", "label": "Destination collection" },
+      { "type": "url", "id": "link", "label": "Alternative link" }
     ] }
   ],
-  "presets": [{ "name": "Banners editoriais", "blocks": [
-    { "type": "editorial", "settings": { "eyebrow": "Para todos os dias", "title": "Everyday Elegance", "copy": "Peças versáteis para elevar os teus looks diários.", "button_label": "Descobrir a coleção" } },
-    { "type": "editorial", "settings": { "eyebrow": "O detalhe final", "title": "The Accessories Edit", "copy": "Os detalhes que dão personalidade a cada coordenado.", "button_label": "Explorar acessórios" } }
+  "presets": [{ "name": "Editorial banners", "blocks": [
+    { "type": "editorial", "settings": {} },
+    { "type": "editorial", "settings": {} }
   ] }]
 }
 {% endschema %}

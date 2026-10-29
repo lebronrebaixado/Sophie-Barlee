@@ -1,8 +1,8 @@
 {
   "type": "header",
-  "name": "Cabeçalho",
+  "name": "Header",
   "sections": {
-    "announcement": { "type": "announcement-bar", "settings": { "message": "Descobre a nova coleção Sophie Barlee." } },
+    "announcement": { "type": "announcement-bar", "settings": { "message": "" } },
     "header": { "type": "header", "settings": {} }
   },
   "order": ["announcement", "header"]
