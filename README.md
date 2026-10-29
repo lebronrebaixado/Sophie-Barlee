@@ -18,7 +18,7 @@ Five generated editorial campaign images are included as fallback assets (deskto
 
 The server reads public product and collection data through the configured Storefront API and does not write store data or expose its token to the browser. Run with Node 22+ using `pnpm start` (port 3000); `pnpm check` checks JavaScript and Python syntax. The homepage, collection, product, search and empty-bag routes are server-rendered. The Preview is not the live Shopify theme and should remain `noindex`.
 
-The Shopify Storefront API was checked read-only on 29 October 2026 and returned active products plus the `ESSENTIALS`, `NEW IN` and `ACCESSORIES` collections; more products remain paginated. Some of the first 20 active product records contain Portuguese titles, types or descriptions. Theme locale files do not translate that merchant-authored content; use Shopify Translate & Adapt to translate product, collection, menu, page and policy content before claiming the entire storefront is Portuguese-free. No catalogue records were modified.
+The Shopify Storefront API was checked read-only on 29 October 2026 and returned active products and collections. Some merchant-authored product content still needs localization. Theme locale files do not translate this content; use Shopify Translate & Adapt for products, collections, menus, pages and policies before claiming the entire storefront is Portuguese-free. No catalogue records were modified.
 
 This session has no authorised Shopify theme upload or activation operation. The theme ZIP is prepared, but no theme was uploaded, activated or published; the active theme and commercial settings were not changed.
 

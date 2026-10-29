@@ -4,7 +4,7 @@
 
 Construir um tema **Shopify Online Store 2.0 em Liquid**, com secções configuráveis no editor de temas. Esta escolha cumpre diretamente os requisitos de a homepage, banners, imagens, textos, ligações, coleções e navegação serem editáveis no Shopify. Não usar Hydrogen headless: embora a integração Storefront tenha sido ligada, um storefront Hydrogen não disponibiliza estas secções no editor nativo de temas.
 
-Uma consulta de leitura à Storefront API em 29 de outubro de 2026 devolveu produtos ativos e as coleções `ESSENTIALS`, `NEW IN` e `ACCESSORIES`, com mais produtos paginados. Alguns dos primeiros 20 registos têm títulos/tipos/descrições em português. O tema e a pré-visualização usam dados reais sem os modificar; as traduções de conteúdo comercial exigem Shopify Translate & Adapt e não são produzidas pelos ficheiros de locale do tema. Não semear produtos, variantes, preços, avaliações, stock, contactos, dados legais, menus ou condições comerciais.
+Uma consulta de leitura à Storefront API em 29 de outubro de 2026 confirmou produtos e coleções ativos. Algum conteúdo de produto gerido pelo comerciante permanece em português; ficheiros de locale do tema não o traduzem. Usar Shopify Translate & Adapt para as traduções de produtos, coleções, menus, páginas e políticas. A pré-visualização usa dados reais sem os modificar. Não semear produtos, variantes, preços, avaliações, stock, contactos, dados legais, menus ou condições comerciais.
 
 O anexo disponível contém o briefing textual, mas não a imagem de referência descrita. O mapa de homepage será derivado da arquitetura textual do briefing, sem afirmar uma análise visual da imagem em falta.
 
