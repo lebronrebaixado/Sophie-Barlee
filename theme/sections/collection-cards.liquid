@@ -1,0 +1,46 @@
+{% assign has_collections = false %}
+{% for block in section.blocks %}{% if block.settings.collection != blank and block.settings.collection.products_count > 0 %}{% assign has_collections = true %}{% endif %}{% endfor %}
+{% if has_collections %}
+  <section class="section collection-section" aria-labelledby="CollectionCardsTitle-{{ section.id }}">
+    <div class="section-heading"><p class="eyebrow">{{ section.settings.eyebrow | escape }}</p><h2 id="CollectionCardsTitle-{{ section.id }}">{{ section.settings.title | escape }}</h2></div>
+    <div class="collection-grid">
+      {% for block in section.blocks %}
+        {% assign collection = block.settings.collection %}
+        {% if collection != blank and collection.products_count > 0 %}
+          {% assign card_image = block.settings.image | default: collection.featured_image | default: collection.products.first.featured_media.preview_image %}
+          <a class="collection-card" href="{{ collection.url }}" {{ block.shopify_attributes }}>
+            <div class="collection-image">
+              {% if card_image != blank %}{{ card_image | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '360, 540, 720, 1000', sizes: '(min-width: 900px) 20vw, 70vw', alt: block.settings.image_alt | default: collection.title }}{% endif %}
+              <span class="collection-index">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+            </div>
+            <h3>{{ block.settings.title | default: collection.title | escape }}</h3>
+            {% if block.settings.description != blank %}<p>{{ block.settings.description | escape }}</p>{% endif %}
+            <span class="text-link">{{ section.settings.link_label | escape }} <span aria-hidden="true">↗</span></span>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Coleções editoriais",
+  "max_blocks": 5,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Linha editorial", "default": "Escolhe o teu próximo capítulo" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Descobre as coleções" },
+    { "type": "text", "id": "link_label", "label": "Texto da ligação", "default": "Descobrir" }
+  ],
+  "blocks": [
+    { "type": "collection", "name": "Coleção Shopify", "settings": [
+      { "type": "collection", "id": "collection", "label": "Coleção real" },
+      { "type": "image_picker", "id": "image", "label": "Imagem editorial opcional" },
+      { "type": "text", "id": "image_alt", "label": "Texto alternativo" },
+      { "type": "text", "id": "title", "label": "Título opcional" },
+      { "type": "textarea", "id": "description", "label": "Descrição opcional" }
+    ] }
+  ],
+  "presets": [{ "name": "Coleções editoriais", "blocks": [] }]
+}
+{% endschema %}

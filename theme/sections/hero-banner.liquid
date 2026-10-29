@@ -1,0 +1,40 @@
+{% assign hero_image = section.settings.desktop_image | default: section.settings.mobile_image %}
+{% assign mobile_image = section.settings.mobile_image | default: hero_image %}
+{% assign hero_alt = section.settings.image_alt | default: section.settings.title %}
+<section class="hero" aria-labelledby="HeroTitle-{{ section.id }}">
+  {% if hero_image != blank %}
+    <picture class="hero-media">
+      {% if mobile_image != blank %}<source media="(max-width: 700px)" srcset="{{ mobile_image | image_url: width: 1000 }}">{% endif %}
+      <img class="hero-image" src="{{ hero_image | image_url: width: 2400 }}" srcset="{{ hero_image | image_url: width: 900 }} 900w, {{ hero_image | image_url: width: 1200 }} 1200w, {{ hero_image | image_url: width: 1800 }} 1800w, {{ hero_image | image_url: width: 2400 }} 2400w" sizes="100vw" width="{{ hero_image.width }}" height="{{ hero_image.height }}" alt="{{ hero_alt | escape }}" fetchpriority="high">
+    </picture>
+  {% else %}<div class="hero-placeholder" aria-hidden="true"></div>{% endif %}
+  <div class="hero-shade"></div>
+  <div class="hero-copy">
+    {% if section.settings.eyebrow != blank %}<p class="eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif %}
+    <h1 id="HeroTitle-{{ section.id }}">{{ section.settings.title | escape | newline_to_br }}</h1>
+    {% if section.settings.subtitle != blank %}<p>{{ section.settings.subtitle | escape }}</p>{% endif %}
+    {% assign hero_url = section.settings.button_link %}
+    {% if section.settings.collection != blank %}{% assign hero_url = section.settings.collection.url %}{% endif %}
+    {% if section.settings.button_label != blank %}<a class="button button-light" href="{{ hero_url | default: routes.all_products_collection_url }}">{{ section.settings.button_label | escape }} <span aria-hidden="true">↗</span></a>{% endif %}
+  </div>
+  {% if section.settings.caption != blank %}<span class="hero-caption">{{ section.settings.caption | escape }}</span>{% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Hero Sophie Barlee",
+  "settings": [
+    { "type": "image_picker", "id": "desktop_image", "label": "Imagem desktop" },
+    { "type": "image_picker", "id": "mobile_image", "label": "Imagem mobile" },
+    { "type": "text", "id": "image_alt", "label": "Texto alternativo da imagem", "default": "Campanha editorial Sophie Barlee" },
+    { "type": "text", "id": "eyebrow", "label": "Linha editorial", "default": "SOPHIE BARLEE · NOVA ESTAÇÃO" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Descobre o teu próximo look." },
+    { "type": "textarea", "id": "subtitle", "label": "Subtítulo", "default": "Peças que acompanham o teu estilo, do quotidiano às ocasiões especiais." },
+    { "type": "text", "id": "button_label", "label": "Texto do botão", "default": "Explorar a coleção" },
+    { "type": "collection", "id": "collection", "label": "Coleção de destino" },
+    { "type": "url", "id": "button_link", "label": "Ligação alternativa" },
+    { "type": "text", "id": "caption", "label": "Assinatura", "default": "O teu estilo. A tua assinatura." }
+  ],
+  "presets": [{ "name": "Hero Sophie Barlee" }]
+}
+{% endschema %}

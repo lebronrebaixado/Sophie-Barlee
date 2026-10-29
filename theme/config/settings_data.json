@@ -1,0 +1,12 @@
+{
+  "current": {
+    "announcement_text": "Descobre a nova coleção Sophie Barlee.",
+    "show_customer_account": true
+  },
+  "presets": {
+    "Sophie Barlee": {
+      "announcement_text": "Descobre a nova coleção Sophie Barlee.",
+      "show_customer_account": true
+    }
+  }
+}

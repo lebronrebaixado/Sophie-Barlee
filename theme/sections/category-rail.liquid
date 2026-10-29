@@ -1,0 +1,37 @@
+{% assign has_categories = false %}
+{% for block in section.blocks %}{% if block.settings.collection != blank and block.settings.collection.products_count > 0 %}{% assign has_categories = true %}{% endif %}{% endfor %}
+{% if has_categories %}
+  <section class="category-rail section" aria-labelledby="CategoryTitle-{{ section.id }}" data-category-rail>
+    <div class="rail-heading"><p class="eyebrow">{{ section.settings.eyebrow | escape }}</p><h2 id="CategoryTitle-{{ section.id }}">{{ section.settings.title | escape }}</h2></div>
+    <div class="rail-scroll" role="list">
+      {% for block in section.blocks %}
+        {% assign collection = block.settings.collection %}
+        {% if collection != blank and collection.products_count > 0 %}
+          {% assign tile_image = collection.featured_image | default: collection.products.first.featured_media.preview_image %}
+          <a class="category-tile" href="{{ collection.url }}" role="listitem" {{ block.shopify_attributes }}>
+            {% if tile_image != blank %}{{ tile_image | image_url: width: 720 | image_tag: loading: 'lazy', widths: '320, 480, 720', sizes: '(min-width: 900px) 16vw, 42vw', alt: collection.title }}{% endif %}
+            <span class="category-label">{{ block.settings.label | default: collection.title | escape }}</span><span class="category-arrow" aria-hidden="true">↗</span>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Categorias visuais",
+  "max_blocks": 7,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Linha editorial", "default": "Encontra o teu ritmo" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Explora por coleção" }
+  ],
+  "blocks": [
+    { "type": "category", "name": "Categoria Shopify", "settings": [
+      { "type": "collection", "id": "collection", "label": "Coleção" },
+      { "type": "text", "id": "label", "label": "Título opcional" }
+    ] }
+  ],
+  "presets": [{ "name": "Categorias visuais", "blocks": [] }]
+}
+{% endschema %}

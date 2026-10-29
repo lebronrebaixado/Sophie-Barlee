@@ -1,0 +1,1 @@
+{"routes":[{"path":"/","title":"Sophie Barlee — Homepage"},{"path":"/collections/:handle","title":"Coleções — Sophie Barlee"},{"path":"/products/:handle","title":"Produto — Sophie Barlee"},{"path":"/search","title":"Pesquisa — Sophie Barlee"},{"path":"/cart","title":"Carrinho — Sophie Barlee"}]}

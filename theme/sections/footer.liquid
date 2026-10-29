@@ -1,0 +1,30 @@
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <a class="footer-wordmark" href="{{ routes.root_url }}">{{ shop.name | escape }}</a>
+      {% if section.settings.description != blank %}<p>{{ section.settings.description | escape }}</p>{% endif %}
+      {% if settings.contact_email != blank %}<a href="mailto:{{ settings.contact_email | escape }}">{{ settings.contact_email | escape }}</a>{% endif %}
+    </div>
+    {% if settings.footer_menu != blank %}
+      <nav class="footer-nav" aria-label="Informação e apoio"><h2>{{ section.settings.menu_heading | escape }}</h2><ul>{% for link in settings.footer_menu.links %}<li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>{% endfor %}</ul></nav>
+    {% endif %}
+    <nav class="footer-policies" aria-label="Políticas da loja">
+      {% if shop.policies.shipping_policy != blank %}<a href="{{ shop.policies.shipping_policy.url }}">{{ shop.policies.shipping_policy.title | escape }}</a>{% endif %}
+      {% if shop.policies.refund_policy != blank %}<a href="{{ shop.policies.refund_policy.url }}">{{ shop.policies.refund_policy.title | escape }}</a>{% endif %}
+      {% if shop.policies.privacy_policy != blank %}<a href="{{ shop.policies.privacy_policy.url }}">{{ shop.policies.privacy_policy.title | escape }}</a>{% endif %}
+      {% if shop.policies.terms_of_service != blank %}<a href="{{ shop.policies.terms_of_service.url }}">{{ shop.policies.terms_of_service.title | escape }}</a>{% endif %}
+    </nav>
+  </div>
+  <div class="footer-bottom"><span>© {{ 'now' | date: '%Y' }} {{ shop.name | escape }}</span><span>{{ section.settings.signature | escape }}</span></div>
+</footer>
+
+{% schema %}
+{
+  "name": "Rodapé Sophie Barlee",
+  "settings": [
+    { "type": "textarea", "id": "description", "label": "Descrição da marca", "default": "Moda que acompanha a mulher nas diferentes versões de si própria." },
+    { "type": "text", "id": "menu_heading", "label": "Título do menu", "default": "Apoio e informação" },
+    { "type": "text", "id": "signature", "label": "Assinatura", "default": "Define o teu estilo. Escreve as tuas regras." }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,13 @@
+{
+  "name": "sophie-barlee-storefront",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.25.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "check": "node --check server.mjs && node --check theme/assets/sophie.js && python3 -c \"compile(open('scripts/package-theme.py').read(), 'scripts/package-theme.py', 'exec')\""
+  }
+}

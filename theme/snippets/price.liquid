@@ -1,0 +1,6 @@
+{% assign current_variant = product.selected_or_first_available_variant | default: product.variants.first %}
+{% if current_variant != blank %}
+  <span>{{ current_variant.price | money }}</span>
+{% else %}
+  <span>{{ product.price | money }}</span>
+{% endif %}

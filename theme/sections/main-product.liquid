@@ -1,0 +1,56 @@
+<section class="product-main section" data-product-section>
+  <div class="product-gallery" aria-label="Fotografias de {{ product.title | escape }}">
+    {% for media in product.media %}
+      {% if media.media_type == 'image' %}<figure class="product-gallery-item">{{ media.preview_image | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '480, 720, 1000, 1300, 1600', sizes: '(min-width: 900px) 55vw, 100vw', alt: media.alt | default: product.title }}</figure>{% endif %}
+    {% endfor %}
+  </div>
+  <div class="product-information">
+    {% if section.settings.eyebrow != blank %}<p class="eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif %}
+    <h1>{{ product.title | escape }}</h1>
+    <p class="product-detail-price" data-product-price>{{ product.selected_or_first_available_variant.price | money }}</p>
+    {% if product.description != blank %}<div class="product-description rte">{{ product.description }}</div>{% endif %}
+    {% assign composition = product.metafields.custom.composition.value %}
+    {% if composition != blank %}<p class="product-fact"><strong>Composição</strong><span>{{ composition | escape }}</span></p>{% endif %}
+    {% assign fit = product.metafields.custom.fit.value %}
+    {% if fit != blank %}<p class="product-fact"><strong>Corte e ajuste</strong><span>{{ fit | escape }}</span></p>{% endif %}
+    {% assign product_form_id = 'ProductForm-' | append: section.id %}
+    {% form 'product', product, id: product_form_id, class: 'product-form' %}
+      {% unless product.has_only_default_variant %}
+        {% for option in product.options_with_values %}
+          <div class="variant-option"><label for="Option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name | escape }}</label>
+            <select id="Option-{{ section.id }}-{{ forloop.index0 }}" name="options[{{ option.name | escape }}]" data-product-option>
+              {% for value in option.values %}<option value="{{ value | escape }}"{% if option.selected_value == value %} selected{% endif %}>{{ value | escape }}</option>{% endfor %}
+            </select>
+          </div>
+        {% endfor %}
+      {% endunless %}
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id>
+      {% assign variants_json = product.variants | json | replace: '</', '<\/' %}
+      <script type="application/json" data-variants>{{ variants_json }}</script>
+      {% if settings.size_guide_page != blank %}<a class="size-guide" href="{{ settings.size_guide_page.url }}">{{ 'products.size_guide' | t }} ↗</a>{% endif %}
+      <button class="button button-dark add-to-cart" type="submit" name="add" data-add-to-cart{% unless product.selected_or_first_available_variant.available %} disabled{% endunless %}>{% if product.selected_or_first_available_variant.available %}{{ 'products.add_to_cart' | t }}{% else %}{{ 'products.sold_out' | t }}{% endif %}</button>
+    {% endform %}
+    <div class="product-policies">
+      {% if shop.policies.shipping_policy != blank %}<p><a href="{{ shop.policies.shipping_policy.url }}">{{ shop.policies.shipping_policy.title | escape }}</a></p>{% endif %}
+      {% if shop.policies.refund_policy != blank %}<p><a href="{{ shop.policies.refund_policy.url }}">{{ shop.policies.refund_policy.title | escape }}</a></p>{% endif %}
+    </div>
+    {% for block in section.blocks %}
+      {% if block.type == 'faq' %}<details class="product-faq" {{ block.shopify_attributes }}><summary>{{ block.settings.question | escape }}</summary><div class="rte">{{ block.settings.answer }}</div></details>{% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Produto principal",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Linha editorial", "default": "Sophie Barlee" }
+  ],
+  "blocks": [
+    { "type": "faq", "name": "Pergunta frequente", "settings": [
+      { "type": "text", "id": "question", "label": "Pergunta" },
+      { "type": "richtext", "id": "answer", "label": "Resposta" }
+    ] }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "hero": { "type": "hero-banner", "settings": {} },
+    "categories": { "type": "category-rail", "blocks": {}, "block_order": [], "settings": {} },
+    "collections": { "type": "collection-cards", "blocks": {}, "block_order": [], "settings": { "title": "Descobre as coleções" } },
+    "featured_collections": { "type": "collection-cards", "blocks": {}, "block_order": [], "settings": { "eyebrow": "A seleção da Sophie", "title": "Coleções em destaque" } },
+    "editorial": { "type": "editorial-pair", "blocks": {
+      "everyday": { "type": "editorial", "settings": { "eyebrow": "Para todos os dias", "title": "Everyday Elegance", "copy": "Peças versáteis para elevar os teus looks diários.", "button_label": "Descobrir a coleção" } },
+      "accessories": { "type": "editorial", "settings": { "eyebrow": "O detalhe final", "title": "The Accessories Edit", "copy": "Os detalhes que dão personalidade a cada coordenado.", "button_label": "Explorar acessórios" } }
+    }, "block_order": ["everyday", "accessories"], "settings": {} },
+    "campaign": { "type": "campaign-banner", "settings": {} },
+    "trending": { "type": "collection-cards", "blocks": {}, "block_order": [], "settings": { "eyebrow": "Escolhas atuais", "title": "Em destaque" } },
+    "arrivals": { "type": "featured-products", "settings": {} },
+    "newsletter": { "type": "newsletter", "settings": {} }
+  },
+  "order": ["hero", "categories", "collections", "featured_collections", "editorial", "campaign", "trending", "arrivals", "newsletter"]
+}

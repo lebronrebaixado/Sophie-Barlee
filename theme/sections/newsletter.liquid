@@ -1,0 +1,27 @@
+<section class="newsletter" aria-labelledby="NewsletterTitle-{{ section.id }}">
+  <div class="newsletter-copy"><p class="eyebrow">{{ section.settings.eyebrow | escape }}</p><h2 id="NewsletterTitle-{{ section.id }}">{{ section.settings.title | escape | newline_to_br }}</h2><p>{{ section.settings.copy | escape }}</p></div>
+  {% assign newsletter_form_id = 'NewsletterForm-' | append: section.id %}
+  {% form 'customer', id: newsletter_form_id, class: 'newsletter-form' %}
+    <input type="hidden" name="contact[tags]" value="newsletter">
+    <label for="NewsletterEmail-{{ section.id }}">{{ section.settings.email_label | escape }}</label>
+    <div class="newsletter-field"><input id="NewsletterEmail-{{ section.id }}" type="email" name="contact[email]" value="{{ form.email | escape }}" autocomplete="email" autocorrect="off" autocapitalize="off" required><button type="submit">{{ section.settings.button_label | escape }} <span aria-hidden="true">↗</span></button></div>
+    <label class="consent"><input type="checkbox" name="contact[accepts_marketing]" value="true" required><span>{{ section.settings.consent | escape }}{% if shop.policies.privacy_policy != blank %} <a href="{{ shop.policies.privacy_policy.url }}">{{ shop.policies.privacy_policy.title | escape }}</a>{% endif %}</span></label>
+    {% if form.posted_successfully? %}<p class="form-feedback" role="status">{{ 'newsletter.success' | t }}</p>{% endif %}
+    {% if form.errors %}<div class="form-feedback" role="alert">{{ 'newsletter.error' | t }} {{ form.errors | default_errors }}</div>{% endif %}
+  {% endform %}
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter Sophie Barlee",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Linha editorial", "default": "Recebe novidades" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Entra no universo Sophie Barlee." },
+    { "type": "textarea", "id": "copy", "label": "Texto", "default": "Recebe novidades, inspirações de estilo e informações sobre novas coleções." },
+    { "type": "text", "id": "email_label", "label": "Label do email", "default": "O teu endereço de email" },
+    { "type": "text", "id": "button_label", "label": "Texto do botão", "default": "Subscrever" },
+    { "type": "textarea", "id": "consent", "label": "Consentimento", "default": "Concordo em receber novidades por email. Posso cancelar a subscrição em qualquer momento." }
+  ],
+  "presets": [{ "name": "Newsletter Sophie Barlee" }]
+}
+{% endschema %}

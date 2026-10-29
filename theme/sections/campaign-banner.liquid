@@ -1,0 +1,25 @@
+<section class="campaign" aria-labelledby="CampaignTitle-{{ section.id }}">
+  {% if section.settings.image != blank %}{{ section.settings.image | image_url: width: 2400 | image_tag: class: 'campaign-image', loading: 'lazy', widths: '900, 1200, 1600, 2000, 2400', sizes: '100vw', alt: section.settings.image_alt | default: section.settings.title }}{% endif %}
+  <div class="campaign-shade"></div>
+  <div class="campaign-copy"><p class="eyebrow">{{ section.settings.eyebrow | escape }}</p><h2 id="CampaignTitle-{{ section.id }}">{{ section.settings.title | escape }}</h2><p>{{ section.settings.subtitle | escape }}</p>
+    {% assign campaign_url = section.settings.link %}{% if section.settings.collection != blank %}{% assign campaign_url = section.settings.collection.url %}{% endif %}
+    {% if section.settings.button_label != blank %}<a class="button button-light" href="{{ campaign_url | default: routes.all_products_collection_url }}">{{ section.settings.button_label | escape }} <span aria-hidden="true">↗</span></a>{% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Campanha panorâmica",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Imagem da campanha" },
+    { "type": "text", "id": "image_alt", "label": "Texto alternativo", "default": "Campanha editorial Sophie Barlee" },
+    { "type": "text", "id": "eyebrow", "label": "Linha editorial", "default": "Uma expressão pessoal" },
+    { "type": "text", "id": "title", "label": "Título", "default": "THE SOPHIE EDIT" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtítulo", "default": "Uma seleção de peças para expressares o teu estilo." },
+    { "type": "text", "id": "button_label", "label": "Texto do botão", "default": "Descobrir a seleção" },
+    { "type": "collection", "id": "collection", "label": "Coleção de destino" },
+    { "type": "url", "id": "link", "label": "Ligação alternativa" }
+  ],
+  "presets": [{ "name": "Campanha panorâmica" }]
+}
+{% endschema %}

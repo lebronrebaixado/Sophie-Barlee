@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 96" role="img" aria-labelledby="title desc">
+  <title id="title">Sophie Barlee</title>
+  <desc id="desc">Wordmark editorial Sophie Barlee com um monograma S em castanho profundo.</desc>
+  <rect width="320" height="96" fill="#F7F4EE"/>
+  <circle cx="48" cy="48" r="34" fill="none" stroke="#A59686" stroke-width="1.5"/>
+  <path d="M60 31c-3-4-7-6-13-6-8 0-13 4-13 10 0 5 4 8 13 10 9 2 14 5 14 12 0 7-6 12-15 12-7 0-12-2-16-7" fill="none" stroke="#40342E" stroke-width="2.2" stroke-linecap="round"/>
+  <text x="98" y="46" fill="#40342E" font-family="Georgia, 'Times New Roman', serif" font-size="24" letter-spacing="2.2">SOPHIE</text>
+  <text x="98" y="70" fill="#40342E" font-family="Georgia, 'Times New Roman', serif" font-size="24" letter-spacing="2.2">BARLEE</text>
+</svg>

@@ -1,0 +1,31 @@
+<section class="editorial section" aria-label="Linhas editoriais">
+  {% for block in section.blocks %}
+    <a class="editorial-panel" href="{% if block.settings.collection != blank %}{{ block.settings.collection.url }}{% else %}{{ block.settings.link | default: routes.all_products_collection_url }}{% endif %}" {{ block.shopify_attributes }}>
+      {% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 720, 960, 1200', sizes: '(min-width: 900px) 50vw, 100vw', alt: block.settings.image_alt | default: block.settings.title }}{% endif %}
+      <span class="editorial-overlay"><span class="eyebrow">{{ block.settings.eyebrow | escape }}</span><strong>{{ block.settings.title | escape }}</strong><span>{{ block.settings.copy | escape }}</span><span class="text-link">{{ block.settings.button_label | escape }} <span aria-hidden="true">↗</span></span></span>
+    </a>
+  {% endfor %}
+</section>
+
+{% schema %}
+{
+  "name": "Banners editoriais",
+  "max_blocks": 2,
+  "blocks": [
+    { "type": "editorial", "name": "Banner editorial", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Imagem editorial" },
+      { "type": "text", "id": "image_alt", "label": "Texto alternativo" },
+      { "type": "text", "id": "eyebrow", "label": "Linha curta" },
+      { "type": "text", "id": "title", "label": "Título", "default": "Everyday Elegance" },
+      { "type": "textarea", "id": "copy", "label": "Texto", "default": "Peças versáteis para elevar os teus looks diários." },
+      { "type": "text", "id": "button_label", "label": "Texto do botão", "default": "Descobrir a coleção" },
+      { "type": "collection", "id": "collection", "label": "Coleção de destino" },
+      { "type": "url", "id": "link", "label": "Ligação alternativa" }
+    ] }
+  ],
+  "presets": [{ "name": "Banners editoriais", "blocks": [
+    { "type": "editorial", "settings": { "eyebrow": "Para todos os dias", "title": "Everyday Elegance", "copy": "Peças versáteis para elevar os teus looks diários.", "button_label": "Descobrir a coleção" } },
+    { "type": "editorial", "settings": { "eyebrow": "O detalhe final", "title": "The Accessories Edit", "copy": "Os detalhes que dão personalidade a cada coordenado.", "button_label": "Explorar acessórios" } }
+  ] }]
+}
+{% endschema %}

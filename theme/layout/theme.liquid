@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#f7f4ee">
+    <meta name="description" content="{{ page_description | default: shop.description | default: shop.name | escape }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    {% if request.page_type == 'search' or request.page_type == '404' %}<meta name="robots" content="noindex,follow">{% endif %}
+    <title>{{ page_title | escape }}{% unless page_title contains shop.name %} · {{ shop.name | escape }}{% endunless %}</title>
+    <meta property="og:type" content="{% if request.page_type == 'product' %}product{% else %}website{% endif %}">
+    <meta property="og:site_name" content="{{ shop.name | escape }}">
+    <meta property="og:title" content="{{ page_title | escape }}">
+    <meta property="og:description" content="{{ page_description | default: shop.description | default: shop.name | escape }}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ page_title | escape }}">
+    <meta name="twitter:description" content="{{ page_description | default: shop.description | default: shop.name | escape }}">
+    {% assign social_image = page_image | default: settings.social_sharing_image %}
+    {% if social_image != blank %}
+      <meta property="og:image" content="{{ social_image | image_url: width: 1200 | prepend: 'https:' }}">
+      <meta name="twitter:image" content="{{ social_image | image_url: width: 1200 | prepend: 'https:' }}">
+    {% endif %}
+    <link rel="stylesheet" href="{{ 'sophie.css' | asset_url }}">
+    {{ content_for_header }}
+  </head>
+  <body class="template-{{ request.page_type | handle }}">
+    <a class="skip-link" href="#MainContent">{{ 'accessibility.skip_to_content' | t }}</a>
+    {% sections 'header-group' %}
+    <main id="MainContent" class="main-content" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+    {% sections 'footer-group' %}
+    <script src="{{ 'sophie.js' | asset_url }}" defer></script>
+  </body>
+</html>
