@@ -36,7 +36,7 @@ O anexo disponível contém o briefing textual, mas não a imagem de referência
 - **Movimento:** editorial contemporâneo europeu, com composição de campanha e bastante espaço de leitura.
 - **Princípios:** hierarquia editorial; merchandising condicionado a dados reais; navegação direta; componentes simples de manter.
 - **Paleta:** marfim `#F7F4EE`, areia `#D9CCBC`, taupe `#A59686`, castanho profundo `#40342E`, preto suave `#252525` e branco. Neutros quentes enquadram fotografia e ajudam a leitura sem transformar a loja numa composição promocional.
-- **Layout:** hero panorâmico; trilhos horizontais de imagens; grelhas com densidade progressiva; banners editoriais assimétricos; mobile com navegação compacta e secções empilhadas.
+- **Layout:** hero panorâmico; banners editoriais em retrato 4:5 para corresponder às fotografias, limitados em largura em ecrãs ultrawide; mobile com navegação compacta e secções empilhadas. No desktop, hero, banners e campanha isolam as camadas de imagem/escurecimento/texto com stacking contexts positivos e clips locais; os banners editoriais têm um intervalo vertical próprio para não tocarem no hero.
 - **Motivos:** wordmark serifado com espaçamento controlado; filetes finos taupe; número editorial discreto nas etiquetas de secção.
 - **Tipografia:** Cormorant Garamond para títulos e Montserrat para navegação/corpo, em ficheiros locais sob SIL OFL 1.1 para evitar pedidos de fontes a terceiros; fallback robusto e preços legíveis.
 - **Interação:** alvos tácteis confortáveis, focus visível, menu acessível, controlos claros, formulários nativos e estados de vazio recuperáveis.
@@ -48,7 +48,7 @@ O anexo disponível contém o briefing textual, mas não a imagem de referência
 
 ## Estrutura de ficheiros
 
-- `theme/`: tema Shopify Liquid OS 2.0 — layouts, templates JSON, secções, snippets, CSS/JS, cinco assets editoriais de fallback, configuração e locales `pt-PT`/`en.default`.
+- `theme/`: tema Shopify Liquid OS 2.0 — layouts, templates JSON, secções, snippets, CSS/JS responsivos com camadas de imagem isoladas, cinco assets editoriais de fallback, configuração e locales `pt-PT`/`en.default`.
 - `server.mjs`, `public/` e `package.json`: pré-visualização independente server-rendered servida pelo projecto Webdev, incluindo rotas reais de produto/coleção/pesquisa/carrinho vazio; não substitui a renderização real Shopify.
 - `docs/homepage-map.md`, `docs/homepage-map.mmd` e `docs/homepage-map.png`: mapa da arquitectura pedida em texto, fonte renderizável e diagrama PNG.
 - `scripts/package-theme.py`: validação estrutural e criação do ZIP do tema.
